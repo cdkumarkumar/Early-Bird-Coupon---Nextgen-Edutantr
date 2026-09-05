@@ -1,556 +1,1911 @@
-/* =========================================================
-   EXTRA TRANSITION + MOVABLE OBJECT ANIMATIONS
-   ========================================================= */
-
-/* Smooth page loading */
-body {
-    animation: pageEnter 1.2s ease forwards;
-    overflow-x: hidden;
-}
-
-@keyframes pageEnter {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* ---------------------------------------------------------
-   MOVING BACKGROUND OBJECTS
-   --------------------------------------------------------- */
-
-body::before,
-body::after {
-    content: "";
-    position: fixed;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: -1;
-}
-
-body::before {
-    width: 180px;
-    height: 180px;
-    top: 8%;
-    left: -60px;
-    background: rgba(76, 175, 80, 0.15);
-    filter: blur(2px);
-    animation: moveCircleOne 12s ease-in-out infinite alternate;
-}
-
-body::after {
-    width: 230px;
-    height: 230px;
-    bottom: 5%;
-    right: -80px;
-    background: rgba(46, 125, 50, 0.12);
-    filter: blur(3px);
-    animation: moveCircleTwo 15s ease-in-out infinite alternate;
-}
-
-@keyframes moveCircleOne {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    50% {
-        transform: translate(120px, 80px) scale(1.15);
-    }
-
-    100% {
-        transform: translate(30px, 180px) scale(0.9);
-    }
-}
-
-@keyframes moveCircleTwo {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    50% {
-        transform: translate(-120px, -100px) scale(1.2);
-    }
-
-    100% {
-        transform: translate(-30px, -180px) scale(0.85);
-    }
-}
-
-
-/* ---------------------------------------------------------
-   FLOATING SMALL OBJECTS
-   --------------------------------------------------------- */
-
-.floating-object {
-    position: fixed;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(46, 125, 50, 0.35);
-    pointer-events: none;
-    z-index: 0;
-    animation: floatingObject 8s ease-in-out infinite;
-}
-
-.floating-object:nth-child(1) {
-    top: 15%;
-    left: 8%;
-    animation-delay: 0s;
-}
-
-.floating-object:nth-child(2) {
-    top: 30%;
-    right: 10%;
-    width: 18px;
-    height: 18px;
-    animation-delay: 2s;
-}
-
-.floating-object:nth-child(3) {
-    bottom: 20%;
-    left: 12%;
-    width: 8px;
-    height: 8px;
-    animation-delay: 4s;
-}
-
-.floating-object:nth-child(4) {
-    bottom: 12%;
-    right: 15%;
-    width: 14px;
-    height: 14px;
-    animation-delay: 1s;
-}
-
-@keyframes floatingObject {
-    0% {
-        transform: translate(0, 0) rotate(0deg);
-        opacity: 0.4;
-    }
-
-    25% {
-        transform: translate(30px, -40px) rotate(90deg);
-        opacity: 0.8;
-    }
-
-    50% {
-        transform: translate(-20px, -80px) rotate(180deg);
-        opacity: 0.5;
-    }
-
-    75% {
-        transform: translate(-50px, -30px) rotate(270deg);
-        opacity: 0.8;
-    }
-
-    100% {
-        transform: translate(0, 0) rotate(360deg);
-        opacity: 0.4;
-    }
-}
-
-
-/* ---------------------------------------------------------
-   MAIN CARD SMOOTH FLOAT
-   --------------------------------------------------------- */
-
-.main-card {
-    animation:
-        fadeUp 1s ease forwards,
-        cardFloat 6s ease-in-out 1.5s infinite;
-    transition:
-        transform 0.5s ease,
-        box-shadow 0.5s ease;
-}
-
-.main-card:hover {
-    transform: translateY(-8px);
-    box-shadow:
-        0 25px 60px rgba(0, 80, 30, 0.18);
-}
-
-@keyframes cardFloat {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
-}
-
-
-/* ---------------------------------------------------------
-   COUPON CARD 3D MOVEMENT
-   --------------------------------------------------------- */
-
-.coupon-card {
-    transition:
-        transform 0.6s cubic-bezier(.2,.8,.2,1),
-        box-shadow 0.6s ease;
-    transform-style: preserve-3d;
-}
-
-.coupon-card:hover {
-    transform:
-        perspective(1000px)
-        rotateX(3deg)
-        rotateY(-4deg)
-        translateY(-8px)
-        scale(1.015);
-
-    box-shadow:
-        0 25px 45px rgba(0, 90, 40, 0.25);
-}
-
-
-/* ---------------------------------------------------------
-   COUPON GLOW MOVEMENT
-   --------------------------------------------------------- */
-
-.coupon-card::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -100%;
-    width: 60%;
-    height: 200%;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,0.35),
-        transparent
-    );
-
-    transform: rotate(20deg);
-    animation: couponShine 5s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes couponShine {
-    0% {
-        left: -100%;
-    }
-
-    45%,
-    100% {
-        left: 150%;
-    }
-}
-
-
-/* ---------------------------------------------------------
-   EARLY BIRD TITLE ANIMATION
-   --------------------------------------------------------- */
-
-.coupon-card h1,
-.coupon-card h2 {
-    animation: titleGlow 3s ease-in-out infinite alternate;
-}
-
-@keyframes titleGlow {
-    from {
-        text-shadow: 0 0 0 rgba(255,255,255,0);
-    }
-
-    to {
-        text-shadow:
-            0 0 10px rgba(255,255,255,0.5),
-            0 0 20px rgba(255,255,255,0.25);
-    }
-}
-
-
-/* ---------------------------------------------------------
-   COUPON CODE PULSE
-   --------------------------------------------------------- */
-
-.coupon-code {
-    animation: codePulse 2.8s ease-in-out infinite;
-}
-
-@keyframes codePulse {
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.04);
-    }
-}
-
-
-/* ---------------------------------------------------------
-   PRICE BOX HOVER
-   --------------------------------------------------------- */
-
-.price-box {
-    transition:
-        transform 0.4s ease,
-        box-shadow 0.4s ease;
-}
-
-.price-box:hover {
-    transform: translateY(-6px) scale(1.03);
-    box-shadow:
-        0 12px 25px rgba(0, 90, 40, 0.15);
-}
-
-
-/* ---------------------------------------------------------
-   FORM INPUT TRANSITIONS
-   --------------------------------------------------------- */
-
-input,
-select {
-    transition:
-        all 0.35s ease;
-}
-
-input:hover,
-select:hover {
-    transform: translateY(-2px);
-}
-
-input:focus,
-select:focus {
-    transform:
-        translateY(-3px)
-        scale(1.01);
-
-    box-shadow:
-        0 0 0 4px rgba(46, 125, 50, 0.10),
-        0 8px 20px rgba(0, 80, 30, 0.10);
-}
-
-
-/* ---------------------------------------------------------
-   BUTTON MOVEMENT
-   --------------------------------------------------------- */
-
-button {
-    position: relative;
-    overflow: hidden;
-
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-button:hover {
-    transform: translateY(-4px) scale(1.02);
-
-    box-shadow:
-        0 12px 25px rgba(0, 80, 30, 0.20);
-}
-
-button:active {
-    transform: translateY(1px) scale(0.98);
-}
-
-
-/* Button moving shine */
-
-button::after {
-    content: "";
-    position: absolute;
-
-    top: 0;
-    left: -120%;
-
-    width: 70%;
-    height: 100%;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,0.35),
-        transparent
-    );
-
-    transform: skewX(-20deg);
-
-    transition: left 0.7s ease;
-}
-
-button:hover::after {
-    left: 150%;
-}
-
-
-/* ---------------------------------------------------------
-   REGISTER BUTTON PULSE
-   --------------------------------------------------------- */
-
-.register-btn {
-    animation: registerPulse 2.5s ease-in-out infinite;
-}
-
-@keyframes registerPulse {
-    0%,
-    100% {
-        box-shadow: 0 0 0 rgba(46,125,50,0);
-    }
-
-    50% {
-        box-shadow:
-            0 0 25px rgba(46,125,50,0.30);
-    }
-}
-
-
-/* ---------------------------------------------------------
-   FORM FIELD STAGGERED ENTRY
-   --------------------------------------------------------- */
-
-.form-group {
-    opacity: 0;
-    animation: fieldSlide 0.7s ease forwards;
-}
-
-.form-group:nth-child(1) {
-    animation-delay: 0.2s;
-}
-
-.form-group:nth-child(2) {
-    animation-delay: 0.4s;
-}
-
-.form-group:nth-child(3) {
-    animation-delay: 0.6s;
-}
-
-.form-group:nth-child(4) {
-    animation-delay: 0.8s;
-}
-
-@keyframes fieldSlide {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-
-/* ---------------------------------------------------------
-   SUCCESS MESSAGE ANIMATION
-   --------------------------------------------------------- */
-
-#result {
-    animation: successAppear 0.7s cubic-bezier(.2,.8,.2,1);
-}
-
-@keyframes successAppear {
-    0% {
-        opacity: 0;
-        transform: scale(0.85) translateY(20px);
-    }
-
-    70% {
-        transform: scale(1.03);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
-
-
-/* ---------------------------------------------------------
-   SAVINGS HIGHLIGHT
-   --------------------------------------------------------- */
-
-.savings {
-    animation: savingsGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes savingsGlow {
-    from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(1.06);
-    }
-}
-
-
-/* ---------------------------------------------------------
-   LOGO FLOAT
-   --------------------------------------------------------- */
-
-.logo {
-    animation: logoFloat 4s ease-in-out infinite;
-    transition: transform 0.4s ease;
-}
-
-.logo:hover {
-    transform: scale(1.08) rotate(3deg);
-}
-
-@keyframes logoFloat {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-8px);
-    }
-}
-
-
-/* ---------------------------------------------------------
-   MOBILE OPTIMIZATION
-   --------------------------------------------------------- */
-
-@media (max-width: 768px) {
-
-    body::before {
-        width: 120px;
-        height: 120px;
-    }
-
-    body::after {
-        width: 150px;
-        height: 150px;
-    }
-
-    .coupon-card:hover {
-        transform: translateY(-5px) scale(1.01);
-    }
-
-    .main-card:hover {
-        transform: translateY(-3px);
-    }
-}
-
-
-/* ---------------------------------------------------------
-   REDUCE MOTION FOR ACCESSIBILITY
-   --------------------------------------------------------- */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nextgen Edutantr - Early Bird Offer</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Times New Roman", Times, serif;
+            min-height: 100vh;
+            background:
+                linear-gradient(
+                    135deg,
+                    #e8f5e9,
+                    #f1f8e9,
+                    #dcedc8,
+                    #e8f5e9
+                );
+            background-size: 400% 400%;
+            animation: backgroundMove 15s ease infinite;
+            color: #1b4332;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* =====================================================
+           BACKGROUND
+        ===================================================== */
+
+        @keyframes backgroundMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(76, 175, 80, 0.15);
+            top: 5%;
+            left: -70px;
+            filter: blur(2px);
+            pointer-events: none;
+            z-index: 0;
+            animation: bigCircleOne 12s ease-in-out infinite alternate;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: rgba(46, 125, 50, 0.12);
+            right: -100px;
+            bottom: 0;
+            filter: blur(3px);
+            pointer-events: none;
+            z-index: 0;
+            animation: bigCircleTwo 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes bigCircleOne {
+
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(150px, 100px) scale(1.2);
+            }
+
+            100% {
+                transform: translate(40px, 300px) scale(0.9);
+            }
+        }
+
+        @keyframes bigCircleTwo {
+
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(-120px, -100px) scale(1.2);
+            }
+
+            100% {
+                transform: translate(-30px, -220px) scale(0.85);
+            }
+        }
+
+        /* =====================================================
+           FLOATING OBJECTS
+        ===================================================== */
+
+        .floating-object {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(46, 125, 50, 0.35);
+            pointer-events: none;
+            z-index: 1;
+            animation: floatingObject 8s ease-in-out infinite;
+        }
+
+        @keyframes floatingObject {
+
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.25;
+            }
+
+            25% {
+                transform: translate(40px, -50px) rotate(90deg);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: translate(-20px, -100px) rotate(180deg);
+                opacity: 0.4;
+            }
+
+            75% {
+                transform: translate(-60px, -40px) rotate(270deg);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+                opacity: 0.25;
+            }
+        }
+
+        /* =====================================================
+           PAGE CONTAINER
+        ===================================================== */
+
+        .container {
+            width: 92%;
+            max-width: 1100px;
+            margin: 50px auto;
+            position: relative;
+            z-index: 5;
+            animation: pageEnter 1s ease forwards;
+        }
+
+        @keyframes pageEnter {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =====================================================
+           MAIN CARD
+        ===================================================== */
+
+        .main-card {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow:
+                0 20px 60px rgba(0, 80, 30, 0.15);
+            border: 1px solid rgba(46, 125, 50, 0.12);
+
+            animation:
+                fadeUp 1s ease forwards,
+                cardFloat 6s ease-in-out 1.5s infinite;
+
+            transition:
+                transform 0.5s ease,
+                box-shadow 0.5s ease;
+        }
+
+        .main-card:hover {
+            box-shadow:
+                0 30px 70px rgba(0, 80, 30, 0.20);
+        }
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes cardFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* =====================================================
+           GRID
+        ===================================================== */
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        /* =====================================================
+           LEFT SIDE
+        ===================================================== */
+
+        .left-side {
+            padding: 10px;
+        }
+
+        .logo {
+            width: 120px;
+            max-width: 100%;
+            display: block;
+            margin-bottom: 20px;
+
+            animation: logoFloat 4s ease-in-out infinite;
+
+            transition:
+                transform 0.4s ease,
+                filter 0.4s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.08) rotate(3deg);
+            filter: drop-shadow(
+                0 8px 12px rgba(46, 125, 50, 0.25)
+            );
+        }
+
+        @keyframes logoFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .company-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            animation: textReveal 1s ease 0.3s both;
+        }
+
+        .main-heading {
+            font-size: clamp(42px, 6vw, 70px);
+            line-height: 0.95;
+            color: #1b5e20;
+            font-style: italic;
+            margin-bottom: 15px;
+            animation: headingReveal 1s ease 0.4s both;
+        }
+
+        @keyframes headingReveal {
+
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #558b2f;
+            margin-bottom: 25px;
+            animation: textReveal 1s ease 0.6s both;
+        }
+
+        @keyframes textReveal {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .description {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #49665a;
+            margin-bottom: 20px;
+        }
+
+        /* =====================================================
+           FEATURES
+        ===================================================== */
+
+        .features {
+            display: grid;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: #f1f8e9;
+            border-radius: 12px;
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease,
+                background 0.35s ease;
+        }
+
+        .feature:hover {
+            transform: translateX(8px);
+            box-shadow:
+                0 8px 18px rgba(46, 125, 50, 0.12);
+            background: #e8f5e9;
+        }
+
+        .check {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #43a047;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* =====================================================
+           COUPON CARD
+        ===================================================== */
+
+        .coupon-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px;
+            padding: 35px 30px;
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1b5e20,
+                    #2e7d32,
+                    #43a047,
+                    #1b5e20
+                );
+
+            background-size: 300% 300%;
+
+            animation:
+                couponBackground 8s ease infinite;
+
+            box-shadow:
+                0 25px 50px rgba(27, 94, 32, 0.25);
+
+            transform-style: preserve-3d;
+
+            transition:
+                transform 0.6s cubic-bezier(.2,.8,.2,1),
+                box-shadow 0.6s ease;
+        }
+
+        @keyframes couponBackground {
+
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .coupon-card:hover {
+            transform:
+                perspective(1000px)
+                rotateX(3deg)
+                rotateY(-4deg)
+                translateY(-8px)
+                scale(1.015);
+
+            box-shadow:
+                0 35px 65px rgba(27, 94, 32, 0.35);
+        }
+
+        /* =====================================================
+           COUPON SHINE
+        ===================================================== */
+
+        .coupon-card::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -120%;
+            width: 60%;
+            height: 200%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.3),
+                    transparent
+                );
+
+            transform: rotate(20deg);
+            animation: couponShine 5s ease-in-out infinite;
+
+            pointer-events: none;
+        }
+
+        @keyframes couponShine {
+
+            0% {
+                left: -120%;
+            }
+
+            45%,
+            100% {
+                left: 150%;
+            }
+        }
+
+        /* =====================================================
+           TICKET HOLES
+        ===================================================== */
+
+        .coupon-card::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -12px;
+            width: 24px;
+            height: 24px;
+            background: #e8f5e9;
+            border-radius: 50%;
+            box-shadow:
+                100% 0 0 #e8f5e9;
+            transform: translateY(-50%);
+        }
+
+        .ticket-hole {
+            position: absolute;
+            right: -12px;
+            top: 50%;
+            width: 24px;
+            height: 24px;
+            background: #e8f5e9;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* =====================================================
+           COUPON CONTENT
+        ===================================================== */
+
+        .coupon-company {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .coupon-title {
+            font-size: 55px;
+            line-height: 1;
+            font-style: italic;
+            margin-bottom: 10px;
+
+            animation: titleGlow 3s ease-in-out infinite alternate;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes titleGlow {
+
+            from {
+                text-shadow:
+                    0 0 0 rgba(255, 255, 255, 0);
+            }
+
+            to {
+                text-shadow:
+                    0 0 12px rgba(255, 255, 255, 0.6),
+                    0 0 25px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        .coupon-subtitle {
+            font-size: 18px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* =====================================================
+           CODE
+        ===================================================== */
+
+        .coupon-code {
+            display: inline-block;
+            padding: 12px 22px;
+            border: 2px dashed rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            font-size: 23px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+
+            animation: codePulse 2.8s ease-in-out infinite;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes codePulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .validity {
+            font-size: 15px;
+            margin-bottom: 25px;
+            font-weight: bold;
+
+            animation: validityPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes validityPulse {
+
+            0%,
+            100% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* =====================================================
+           PRICE SECTION
+        ===================================================== */
+
+        .price-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .price-box {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 15px;
+            padding: 18px;
+            text-align: center;
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease,
+                background 0.4s ease;
+        }
+
+        .price-box:hover {
+            transform:
+                translateY(-7px)
+                scale(1.04);
+
+            background:
+                rgba(255, 255, 255, 0.18);
+
+            box-shadow:
+                0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .price-label {
+            font-size: 15px;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .normal-price {
+            font-size: 16px;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .offer-price {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .savings {
+            font-size: 14px;
+            margin-top: 6px;
+            font-weight: bold;
+
+            animation: savingsGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes savingsGlow {
+
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.07);
+            }
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 25px 0;
+            animation: dividerGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes dividerGlow {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* =====================================================
+           RIGHT SIDE FORM
+        ===================================================== */
+
+        .form-section {
+            padding: 10px;
+        }
+
+        .form-title {
+            font-size: 30px;
+            color: #1b5e20;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .form-description {
+            color: #6b7f73;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            opacity: 0;
+            animation: fieldSlide 0.7s ease forwards;
+        }
+
+        .form-group:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .form-group:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .form-group:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .form-group:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes fieldSlide {
+
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #315c3b;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #c8e6c9;
+            border-radius: 12px;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 16px;
+            outline: none;
+            background: #fbfffb;
+
+            transition:
+                all 0.35s ease;
+        }
+
+        input:hover,
+        select:hover {
+            transform: translateY(-2px);
+            border-color: #81c784;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #43a047;
+            transform:
+                translateY(-3px)
+                scale(1.01);
+
+            box-shadow:
+                0 0 0 4px rgba(46, 125, 50, 0.10),
+                0 8px 20px rgba(0, 80, 30, 0.10);
+        }
+
+        /* =====================================================
+           BUTTON
+        ===================================================== */
+
+        button {
+            width: 100%;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 12px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #1b5e20,
+                    #43a047
+                );
+            color: white;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            transform:
+                translateY(-4px)
+                scale(1.02);
+
+            box-shadow:
+                0 12px 25px rgba(0, 80, 30, 0.20);
+        }
+
+        button:active {
+            transform:
+                translateY(1px)
+                scale(0.98);
+        }
+
+        button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 70%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,0.4),
+                    transparent
+                );
+
+            transform: skewX(-20deg);
+            transition: left 0.7s ease;
+        }
+
+        button:hover::after {
+            left: 150%;
+        }
+
+        .apply-btn {
+            margin-top: 5px;
+        }
+
+        .reset-btn {
+            margin-top: 10px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #78909c,
+                    #546e7a
+                );
+        }
+
+        /* =====================================================
+           RESULT
+        ===================================================== */
+
+        #result {
+            margin-top: 20px;
+            animation: successAppear 0.7s cubic-bezier(.2,.8,.2,1);
+        }
+
+        @keyframes successAppear {
+
+            0% {
+                opacity: 0;
+                transform:
+                    scale(0.85)
+                    translateY(20px);
+            }
+
+            70% {
+                transform: scale(1.03);
+            }
+
+            100% {
+                opacity: 1;
+                transform:
+                    scale(1)
+                    translateY(0);
+            }
+        }
+
+        .success-box {
+            background: #e8f5e9;
+            border: 1px solid #a5d6a7;
+            border-radius: 15px;
+            padding: 20px;
+            color: #1b5e20;
+            box-shadow:
+                0 10px 25px rgba(46, 125, 50, 0.10);
+        }
+
+        .success-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(46,125,50,0.1);
+        }
+
+        .result-row:last-child {
+            border-bottom: none;
+        }
+
+        .register-btn {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            color: white;
+            background:
+                linear-gradient(
+                    135deg,
+                    #2e7d32,
+                    #66bb6a
+                );
+            font-size: 18px;
+            font-weight: bold;
+
+            animation: registerPulse 2.5s ease-in-out infinite;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .register-btn:hover {
+            transform:
+                translateY(-4px)
+                scale(1.02);
+
+            box-shadow:
+                0 15px 30px rgba(46, 125, 50, 0.25);
+        }
+
+        @keyframes registerPulse {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 0 0 rgba(46,125,50,0);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 25px rgba(46,125,50,0.3);
+            }
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+            padding: 15px;
+            border-radius: 12px;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-8px);
+            }
+
+            50% {
+                transform: translateX(8px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+        }
+
+        /* =====================================================
+           REGISTRATION NOTE
+        ===================================================== */
+
+        .registration-note {
+            margin-top: 15px;
+            padding: 12px;
+            text-align: center;
+            background: #f1f8e9;
+            color: #558b2f;
+            border-radius: 10px;
+            font-size: 14px;
+            animation: notePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes notePulse {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 0 0 rgba(46,125,50,0);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 15px rgba(46,125,50,0.08);
+            }
+        }
+
+        /* =====================================================
+           CONFETTI
+        ===================================================== */
+
+        .confetti {
+            position: fixed;
+            top: -20px;
+            width: 8px;
+            height: 14px;
+            z-index: 9999;
+            pointer-events: none;
+            animation: confettiFall linear forwards;
+        }
+
+        @keyframes confettiFall {
+
+            0% {
+                transform:
+                    translateY(-20px)
+                    rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translateY(110vh)
+                    rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #607d68;
+            font-size: 14px;
+        }
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .container {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .main-card {
+                padding: 22px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .coupon-title {
+                font-size: 45px;
+            }
+
+            .price-section {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .main-card {
+                padding: 16px;
+                border-radius: 20px;
+            }
+
+            .coupon-card {
+                padding: 28px 22px;
+            }
+
+            .coupon-title {
+                font-size: 40px;
+            }
+
+            .coupon-code {
+                font-size: 18px;
+                letter-spacing: 1px;
+            }
+
+            .price-section {
+                grid-template-columns: 1fr;
+            }
+
+            .main-heading {
+                font-size: 45px;
+            }
+        }
+
+        /* =====================================================
+           REDUCE MOTION ACCESSIBILITY
+        ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         MOVING BACKGROUND OBJECTS
+    ===================================================== -->
+
+    <div class="floating-object"></div>
+    <div class="floating-object"></div>
+    <div class="floating-object"></div>
+    <div class="floating-object"></div>
+    <div class="floating-object"></div>
+    <div class="floating-object"></div>
+
+    <div class="container">
+
+        <div class="main-card">
+
+            <div class="grid">
+
+                <!-- =================================================
+                     LEFT SIDE
+                ================================================== -->
+
+                <div class="left-side">
+
+                    <img
+                        class="logo"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ95SBv6kI4o1AGE59Bg6SySDUEXnCnm4JPBsO6teu-Q&s=10"
+                        alt="Nextgen Edutantr Logo"
+                    >
+
+                    <div class="company-name">
+                        Nextgen Edutantr Pvt Ltd
+                    </div>
+
+                    <h1 class="main-heading">
+                        Early Bird
+                    </h1>
+
+                    <div class="subtitle">
+                        Exclusive Registration Offer
+                    </div>
+
+                    <p class="description">
+                        Upgrade your technical skills, gain practical
+                        industry exposure and prepare yourself for
+                        better career opportunities.
+                    </p>
+
+                    <div class="features">
+
+                        <div class="feature">
+                            <div class="check">✓</div>
+                            <div>
+                                Industry-focused Upskilling
+                            </div>
+                        </div>
+
+                        <div class="feature">
+                            <div class="check">✓</div>
+                            <div>
+                                Practical Projects & Internship
+                            </div>
+                        </div>
+
+                        <div class="feature">
+                            <div class="check">✓</div>
+                            <div>
+                                Placement Guidance
+                            </div>
+                        </div>
+
+                        <div class="feature">
+                            <div class="check">✓</div>
+                            <div>
+                                Expert Mentorship
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     RIGHT SIDE
+                ================================================== -->
+
+                <div>
+
+                    <!-- COUPON CARD -->
+
+                    <div class="coupon-card">
+
+                        <div class="ticket-hole"></div>
+
+                        <div class="coupon-company">
+                            Nextgen Edutantr Pvt Ltd
+                        </div>
+
+                        <div class="coupon-title">
+                            EARLY BIRD
+                        </div>
+
+                        <div class="coupon-subtitle">
+                            Exclusive Registration Offer
+                        </div>
+
+                        <div class="coupon-code">
+                            CODE - EDUSEP26
+                        </div>
+
+                        <div class="validity">
+                            VALID UNTIL 30 SEPTEMBER 2026
+                        </div>
+
+
+                        <!-- PRICES -->
+
+                        <div class="price-section">
+
+                            <div class="price-box">
+
+                                <div class="price-label">
+                                    ONLINE
+                                </div>
+
+                                <div class="normal-price">
+                                    ₹10,000
+                                </div>
+
+                                <div class="offer-price">
+                                    ₹5,000
+                                </div>
+
+                                <div class="savings">
+                                    Save ₹5,000
+                                </div>
+
+                            </div>
+
+
+                            <div class="price-box">
+
+                                <div class="price-label">
+                                    OFFLINE
+                                </div>
+
+                                <div class="normal-price">
+                                    ₹15,000
+                                </div>
+
+                                <div class="offer-price">
+                                    ₹8,000
+                                </div>
+
+                                <div class="savings">
+                                    Save ₹7,000
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div style="text-align:center;">
+                            Limited Period Early Bird Offer
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         FORM
+                    ================================================== -->
+
+                    <div class="form-section">
+
+                        <h2 class="form-title">
+                            Apply Your Coupon
+                        </h2>
+
+                        <p class="form-description">
+                            Enter your details and apply the coupon
+                            to unlock the special registration price.
+                        </p>
+
+
+                        <form id="couponForm">
+
+                            <div class="form-group">
+
+                                <label for="counsellorName">
+                                    Academic Counsellor Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="counsellorName"
+                                    placeholder="Enter counsellor name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="trainingMode">
+                                    Select Training Mode
+                                </label>
+
+                                <select
+                                    id="trainingMode"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Select mode
+                                    </option>
+
+                                    <option value="online">
+                                        Online
+                                    </option>
+
+                                    <option value="offline">
+                                        Offline
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="couponInput">
+                                    Coupon Code
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="couponInput"
+                                    placeholder="Enter coupon code"
+                                    autocomplete="off"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <button
+                                    type="submit"
+                                    class="apply-btn"
+                                >
+                                    Apply Coupon
+                                </button>
+
+                            </div>
+
+                        </form>
+
+
+                        <!-- RESULT -->
+
+                        <div id="result"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer">
+            © 2026 Nextgen Edutantr Pvt Ltd. All Rights Reserved.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+        /* =====================================================
+           COUPON SETTINGS
+        ===================================================== */
+
+        const COUPON_CODE = "EDUSEP26";
+
+        const VALID_UNTIL =
+            new Date("2026-09-30T23:59:59");
+
+
+        /* =====================================================
+           PRICES
+        ===================================================== */
+
+        const prices = {
+
+            online: {
+                normal: 10000,
+                coupon: 5000
+            },
+
+            offline: {
+                normal: 15000,
+                coupon: 8000
+            }
+
+        };
+
+
+        /* =====================================================
+           RAZORPAY REGISTRATION URL
+        ===================================================== */
+
+        const RAZORPAY_URL =
+            "https://pages.razorpay.com/pl_TRYNqSsf77tJlX/view";
+
+
+        /* =====================================================
+           FORM ELEMENTS
+        ===================================================== */
+
+        const form =
+            document.getElementById("couponForm");
+
+        const result =
+            document.getElementById("result");
+
+        const couponInput =
+            document.getElementById("couponInput");
+
+        const trainingMode =
+            document.getElementById("trainingMode");
+
+        const counsellorName =
+            document.getElementById("counsellorName");
+
+
+        /* =====================================================
+           FORM SUBMIT
+        ===================================================== */
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+                result.innerHTML = "";
+
+                const enteredCode =
+                    couponInput.value
+                    .trim()
+                    .toUpperCase();
+
+                const mode =
+                    trainingMode.value;
+
+                const counsellor =
+                    counsellorName.value.trim();
+
+
+                /* ================================
+                   BASIC VALIDATION
+                ================================= */
+
+                if (!counsellor) {
+
+                    showError(
+                        "Please enter the Academic Counsellor Name."
+                    );
+
+                    return;
+                }
+
+
+                if (!mode) {
+
+                    showError(
+                        "Please select the training mode."
+                    );
+
+                    return;
+                }
+
+
+                if (!enteredCode) {
+
+                    showError(
+                        "Please enter the coupon code."
+                    );
+
+                    return;
+                }
+
+
+                /* ================================
+                   DATE VALIDATION
+                ================================= */
+
+                const currentDate =
+                    new Date();
+
+                if (currentDate > VALID_UNTIL) {
+
+                    showError(
+                        "This coupon has expired."
+                    );
+
+                    return;
+                }
+
+
+                /* ================================
+                   COUPON VALIDATION
+                ================================= */
+
+                if (enteredCode !== COUPON_CODE) {
+
+                    showError(
+                        "Invalid coupon code. Please enter the correct coupon code."
+                    );
+
+                    return;
+                }
+
+
+                /* ================================
+                   SUCCESS
+                ================================= */
+
+                const selectedPrice =
+                    prices[mode];
+
+
+                const savings =
+                    selectedPrice.normal -
+                    selectedPrice.coupon;
+
+
+                result.innerHTML = `
+
+                    <div class="success-box">
+
+                        <div class="success-title">
+                            ✓ Coupon Applied Successfully!
+                        </div>
+
+                        <div class="result-row">
+                            <strong>Counsellor</strong>
+                            <span>
+                                ${escapeHTML(counsellor)}
+                            </span>
+                        </div>
+
+                        <div class="result-row">
+                            <strong>Training Mode</strong>
+                            <span>
+                                ${mode === "online"
+                                    ? "Online"
+                                    : "Offline"}
+                            </span>
+                        </div>
+
+                        <div class="result-row">
+                            <strong>Coupon</strong>
+                            <span>
+                                ${COUPON_CODE}
+                            </span>
+                        </div>
+
+                        <div class="result-row">
+                            <strong>Normal Price</strong>
+                            <span>
+                                ₹${formatNumber(
+                                    selectedPrice.normal
+                                )}
+                            </span>
+                        </div>
+
+                        <div class="result-row">
+                            <strong>Offer Price</strong>
+                            <span>
+                                ₹${formatNumber(
+                                    selectedPrice.coupon
+                                )}
+                            </span>
+                        </div>
+
+                        <div class="result-row">
+                            <strong>You Save</strong>
+                            <span>
+                                ₹${formatNumber(savings)}
+                            </span>
+                        </div>
+
+                        <a
+                            href="${RAZORPAY_URL}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="register-btn"
+                        >
+                            Register Now →
+                        </a>
+
+                    </div>
+
+                    <div class="registration-note">
+                        Complete your registration through the
+                        secure payment page.
+                    </div>
+
+                    <button
+                        type="button"
+                        class="reset-btn"
+                        onclick="resetForm()"
+                    >
+                        Reset
+                    </button>
+
+                `;
+
+
+                /* ================================
+                   CONFETTI
+                ================================= */
+
+                createConfetti();
+
+            }
+        );
+
+
+        /* =====================================================
+           ERROR FUNCTION
+        ===================================================== */
+
+        function showError(message) {
+
+            result.innerHTML = `
+
+                <div class="error">
+                    ${message}
+                </div>
+
+            `;
+        }
+
+
+        /* =====================================================
+           FORMAT NUMBER
+        ===================================================== */
+
+        function formatNumber(number) {
+
+            return number.toLocaleString("en-IN");
+
+        }
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ===================================================== */
+
+        function escapeHTML(value) {
+
+            return value
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /* =====================================================
+           RESET FORM
+        ===================================================== */
+
+        function resetForm() {
+
+            form.reset();
+
+            result.innerHTML = "";
+
+            couponInput.focus();
+
+        }
+
+
+        /* =====================================================
+           CONFETTI
+        ===================================================== */
+
+        function createConfetti() {
+
+            const pieces = 80;
+
+            for (
+                let i = 0;
+                i < pieces;
+                i++
+            ) {
+
+                const confetti =
+                    document.createElement("div");
+
+                confetti.className =
+                    "confetti";
+
+
+                /* Random position */
+
+                confetti.style.left =
+                    Math.random() * 100 + "vw";
+
+
+                /* Random size */
+
+                const size =
+                    Math.random() * 6 + 5;
+
+                confetti.style.width =
+                    size + "px";
+
+                confetti.style.height =
+                    size * 1.7 + "px";
+
+
+                /* Random duration */
+
+                const duration =
+                    Math.random() * 3 + 3;
+
+                confetti.style.animationDuration =
+                    duration + "s";
+
+
+                /* Random delay */
+
+                confetti.style.animationDelay =
+                    Math.random() * 0.8 + "s";
+
+
+                /* Random rotation */
+
+                confetti.style.transform =
+                    `rotate(${Math.random() * 360}deg)`;
+
+
+                document.body.appendChild(confetti);
+
+
+                setTimeout(
+                    () => {
+                        confetti.remove();
+                    },
+                    (duration + 1) * 1000
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           EXTRA RANDOM FLOATING PARTICLES
+        ===================================================== */
+
+        function createFloatingParticles() {
+
+            const particleCount = 15;
+
+            for (
+                let i = 0;
+                i < particleCount;
+                i++
+            ) {
+
+                const particle =
+                    document.createElement("div");
+
+                particle.className =
+                    "floating-object";
+
+
+                particle.style.top =
+                    Math.random() * 100 + "%";
+
+                particle.style.left =
+                    Math.random() * 100 + "%";
+
+
+                const size =
+                    Math.floor(
+                        Math.random() * 8
+                    ) + 5;
+
+
+                particle.style.width =
+                    size + "px";
+
+                particle.style.height =
+                    size + "px";
+
+
+                particle.style.animationDuration =
+                    Math.floor(
+                        Math.random() * 8
+                    ) + 6 + "s";
+
+
+                particle.style.animationDelay =
+                    Math.random() * 5 + "s";
+
+
+                document.body.appendChild(
+                    particle
+                );
+
+            }
+
+        }
+
+
+        /* Start background particles */
+
+        createFloatingParticles();
+
+    </script>
+
+</body>
+</html>
