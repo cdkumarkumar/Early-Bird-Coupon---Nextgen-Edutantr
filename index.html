@@ -1,2034 +1,1129 @@
-<!DOCTYPE html>
-<html lang="en">
+/* =========================================
+   EXTRA PREMIUM ANIMATIONS
+========================================= */
 
-<head>
 
-    <meta charset="UTF-8">
+/* -----------------------------------------
+   ANIMATED BACKGROUND
+----------------------------------------- */
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+body {
+    background-size: 200% 200%;
 
-    <title>
-        Early Bird Coupon - Nextgen Edutantr
-    </title>
+    animation:
+        backgroundMove 12s ease infinite;
+}
 
+@keyframes backgroundMove {
 
-    <style>
+    0% {
+        background-position: 0% 50%;
+    }
 
-        /* =========================================
-           GLOBAL
-        ========================================= */
+    50% {
+        background-position: 100% 50%;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 
 
-        body {
+/* -----------------------------------------
+   FLOATING BACKGROUND CIRCLES
+----------------------------------------- */
 
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+.circle.one {
 
-            min-height: 100vh;
+    animation:
+        floatBig 7s ease-in-out infinite,
+        glowCircle 3s ease-in-out infinite;
+}
 
-            background:
-                radial-gradient(
-                    circle at top left,
-                    #e5f8dc,
-                    transparent 35%
-                ),
+.circle.two {
 
-                radial-gradient(
-                    circle at bottom right,
-                    #bcebab,
-                    transparent 35%
-                ),
+    animation:
+        floatBigReverse 9s ease-in-out infinite,
+        glowCircle 4s ease-in-out infinite;
+}
 
-                #f4f8f4;
 
-            display: flex;
+@keyframes floatBig {
 
-            justify-content: center;
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
 
-            align-items: center;
+    50% {
+        transform:
+            translate(30px, -35px)
+            scale(1.12);
+    }
+}
 
-            padding: 30px 15px;
 
-            overflow-x: hidden;
+@keyframes floatBigReverse {
 
-            color: #173f34;
-        }
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
 
+    50% {
+        transform:
+            translate(-30px, 30px)
+            scale(1.1);
+    }
+}
 
-        /* =========================================
-           BACKGROUND CIRCLES
-        ========================================= */
 
-        .circle {
+@keyframes glowCircle {
 
-            position: fixed;
+    0%,
+    100% {
+        opacity: 0.16;
+    }
 
-            border-radius: 50%;
+    50% {
+        opacity: 0.30;
+    }
+}
 
-            filter: blur(3px);
 
-            opacity: 0.20;
+/* -----------------------------------------
+   HEADER LOGO FLOAT
+----------------------------------------- */
 
-            z-index: -1;
+.header-logo {
 
-            animation:
-                float 8s ease-in-out infinite;
-        }
+    animation:
+        logoFloat 4s ease-in-out infinite;
 
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
 
-        .circle.one {
 
-            width: 180px;
+.header-logo:hover {
 
-            height: 180px;
+    transform:
+        scale(1.12)
+        rotate(5deg);
 
-            background: #78d94b;
+    box-shadow:
+        0 12px 35px
+        rgba(91, 201, 52, 0.45);
+}
 
-            top: 5%;
 
-            left: 5%;
-        }
+@keyframes logoFloat {
 
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
 
-        .circle.two {
+    50% {
+        transform:
+            translateY(-8px);
+    }
+}
 
-            width: 250px;
 
-            height: 250px;
+/* -----------------------------------------
+   MAIN CARD FLOAT
+----------------------------------------- */
 
-            background: #123f32;
+.main-card {
 
-            bottom: 5%;
+    animation:
+        cardEntrance 1s ease,
+        cardFloat 6s ease-in-out infinite;
 
-            right: 5%;
+    transform-origin:
+        center;
+}
 
-            animation-delay: 2s;
-        }
 
+@keyframes cardEntrance {
 
-        @keyframes float {
+    0% {
+        opacity: 0;
+        transform:
+            translateY(60px)
+            scale(0.94);
+    }
 
-            0%,
-            100% {
+    70% {
+        opacity: 1;
+        transform:
+            translateY(-5px)
+            scale(1.01);
+    }
 
-                transform:
-                    translateY(0);
-            }
+    100% {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
 
-            50% {
 
-                transform:
-                    translateY(-30px);
-            }
-        }
+@keyframes cardFloat {
 
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
 
-        /* =========================================
-           CONTAINER
-        ========================================= */
+    50% {
+        transform:
+            translateY(-5px);
+    }
+}
 
-        .container {
 
-            width: 100%;
+/* -----------------------------------------
+   COUPON 3D EFFECT
+----------------------------------------- */
 
-            max-width: 1100px;
-        }
+.coupon {
 
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease;
 
-        /* =========================================
-           HEADER
-        ========================================= */
+    transform-style:
+        preserve-3d;
+}
 
-        .header {
 
-            text-align: center;
+.coupon:hover {
 
-            margin-bottom: 25px;
+    transform:
+        perspective(1000px)
+        rotateY(-3deg)
+        rotateX(2deg)
+        translateY(-7px);
 
-            animation:
-                fadeDown 0.8s ease;
-        }
+    box-shadow:
+        0 25px 55px
+        rgba(16, 45, 37, 0.40);
+}
 
 
-        .header-logo {
+/* -----------------------------------------
+   COUPON LIGHT SWEEP
+----------------------------------------- */
 
-            width: 90px;
+.coupon::after {
 
-            height: 90px;
+    content: "";
 
-            object-fit: contain;
+    position: absolute;
 
-            background: white;
+    top: -100%;
 
-            padding: 5px;
+    left: -80%;
 
-            border-radius: 50%;
+    width: 50%;
 
-            margin-bottom: 10px;
+    height: 300%;
 
-            box-shadow:
-                0 8px 25px
-                rgba(18, 63, 50, 0.20);
-        }
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.18),
+            transparent
+        );
 
+    transform:
+        rotate(25deg);
 
-        .header h1 {
+    animation:
+        couponShine 5s ease-in-out infinite;
 
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+    pointer-events: none;
 
-            font-size: 36px;
+    z-index: 5;
+}
 
-            font-weight: 900;
 
-            color: #123f32;
+@keyframes couponShine {
 
-            margin-bottom: 8px;
+    0% {
+        left: -100%;
+    }
 
-            letter-spacing: 0.5px;
-        }
+    35% {
+        left: 150%;
+    }
 
+    100% {
+        left: 150%;
+    }
+}
 
-        .header p {
 
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+/* -----------------------------------------
+   COUPON LOGO
+----------------------------------------- */
 
-            color: #527064;
+.coupon-logo {
 
-            font-size: 17px;
+    animation:
+        couponLogoFloat 3s ease-in-out infinite;
 
-            font-style: italic;
-        }
+    transition:
+        transform 0.4s ease;
+}
 
 
-        @keyframes fadeDown {
+.coupon-logo:hover {
 
-            from {
+    transform:
+        scale(1.15)
+        rotate(-8deg);
+}
 
-                opacity: 0;
 
-                transform:
-                    translateY(-25px);
-            }
+@keyframes couponLogoFloat {
 
-            to {
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
 
-                opacity: 1;
+    50% {
+        transform:
+            translateY(-6px);
+    }
+}
 
-                transform:
-                    translateY(0);
-            }
-        }
 
+/* -----------------------------------------
+   COMPANY NAME
+----------------------------------------- */
 
-        /* =========================================
-           MAIN CARD
-        ========================================= */
+.company {
 
-        .main-card {
+    animation:
+        textReveal 1.2s ease;
+}
 
-            background:
-                rgba(255, 255, 255, 0.97);
 
-            border-radius: 22px;
+@keyframes textReveal {
 
-            padding: 25px;
+    from {
+        opacity: 0;
+        letter-spacing: 8px;
+    }
 
-            box-shadow:
-                0 20px 60px
-                rgba(18, 63, 50, 0.15);
+    to {
+        opacity: 1;
+        letter-spacing: 0.7px;
+    }
+}
 
-            display: grid;
 
-            grid-template-columns:
-                1fr 1fr;
+/* -----------------------------------------
+   EARLY BIRD TITLE
+----------------------------------------- */
 
-            gap: 25px;
+.coupon-title {
 
-            animation:
-                fadeUp 0.8s ease;
+    animation:
+        earlyBirdGlow 2s ease-in-out infinite;
 
-            border:
-                1px solid
-                rgba(50, 130, 90, 0.12);
-        }
+    transform-origin:
+        center;
+}
 
 
-        @keyframes fadeUp {
+@keyframes earlyBirdGlow {
 
-            from {
+    0%,
+    100% {
 
-                opacity: 0;
+        transform:
+            scale(1);
 
-                transform:
-                    translateY(30px);
-            }
+        text-shadow:
+            0 3px 10px
+            rgba(0,0,0,0.25);
+    }
 
-            to {
+    50% {
 
-                opacity: 1;
+        transform:
+            scale(1.05);
 
-                transform:
-                    translateY(0);
-            }
-        }
+        text-shadow:
+            0 0 8px
+            #8df246,
 
+            0 0 20px
+            rgba(141,242,70,0.6),
 
-        /* =========================================
-           COUPON
-        ========================================= */
+            0 3px 10px
+            rgba(0,0,0,0.25);
+    }
+}
 
-        .coupon {
 
-            position: relative;
+/* -----------------------------------------
+   SUBTITLE
+----------------------------------------- */
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #123f32,
-                    #287052
-                );
+.coupon-subtitle {
 
-            min-height: 420px;
+    animation:
+        fadeInUp 1.4s ease;
+}
 
-            border:
-                7px solid
-                #0c2b22;
 
-            border-radius: 14px;
+@keyframes fadeInUp {
 
-            overflow: hidden;
+    from {
 
-            display: flex;
+        opacity: 0;
 
-            flex-direction: column;
+        transform:
+            translateY(15px);
+    }
 
-            color: white;
+    to {
 
-            box-shadow:
-                0 15px 35px
-                rgba(16, 45, 37, 0.25);
-        }
+        opacity: 1;
 
+        transform:
+            translateY(0);
+    }
+}
 
-        /* Decorative circle */
 
-        .coupon::before {
+/* -----------------------------------------
+   COUPON CODE GLOW
+----------------------------------------- */
 
-            content: "";
+.coupon-code {
 
-            position: absolute;
+    animation:
+        couponCodePulse 2.5s ease-in-out infinite;
 
-            width: 250px;
+    transition:
+        transform 0.3s ease;
+}
 
-            height: 250px;
 
-            background:
-                #8df246;
+.coupon-code:hover {
 
-            border-radius: 50%;
+    transform:
+        scale(1.08);
+}
 
-            top: -125px;
 
-            right: -100px;
+@keyframes couponCodePulse {
 
-            opacity: 0.12;
-        }
+    0%,
+    100% {
 
+        text-shadow:
+            0 0 0
+            rgba(141,242,70,0);
+    }
 
-        /* Ticket holes */
+    50% {
 
-        .left-hole,
-        .right-hole {
+        text-shadow:
+            0 0 8px
+            #8df246,
 
-            position: absolute;
+            0 0 18px
+            rgba(141,242,70,0.6);
+    }
+}
 
-            width: 32px;
 
-            height: 32px;
+/* -----------------------------------------
+   VALID DATE PULSE
+----------------------------------------- */
 
-            background:
-                #f4f8f4;
+.coupon-valid {
 
-            border-radius: 50%;
+    animation:
+        datePulse 2.5s ease-in-out infinite;
+}
 
-            top: 50%;
 
-            transform:
-                translateY(-50%);
+@keyframes datePulse {
 
-            z-index: 10;
-        }
+    0%,
+    100% {
+        opacity: 0.75;
+    }
 
+    50% {
+        opacity: 1;
+    }
+}
 
-        .left-hole {
 
-            left: -21px;
-        }
+/* -----------------------------------------
+   PRICE BOXES
+----------------------------------------- */
 
+.price-box {
 
-        .right-hole {
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
 
-            right: -21px;
-        }
 
+.price-box:hover {
 
-        /* =========================================
-           COUPON TOP
-        ========================================= */
+    transform:
+        translateY(-8px)
+        scale(1.06);
 
-        .coupon-top {
+    filter:
+        drop-shadow(
+            0 8px 10px
+            rgba(141,242,70,0.20)
+        );
+}
 
-            text-align: center;
 
-            padding:
-                20px 15px 10px;
+/* -----------------------------------------
+   PRICE ANIMATION
+----------------------------------------- */
 
-            position: relative;
+.price {
 
-            z-index: 2;
-        }
+    animation:
+        pricePulse 2.2s ease-in-out infinite;
+}
 
 
-        .coupon-logo {
+@keyframes pricePulse {
 
-            width: 68px;
+    0%,
+    100% {
 
-            height: 68px;
+        transform:
+            scale(1);
+    }
 
-            object-fit: contain;
+    50% {
 
-            background: white;
+        transform:
+            scale(1.08);
+    }
+}
 
-            border-radius: 50%;
 
-            padding: 5px;
+/* -----------------------------------------
+   DIVIDER
+----------------------------------------- */
 
-            margin-bottom: 9px;
+.divider {
 
-            box-shadow:
-                0 5px 15px
-                rgba(0, 0, 0, 0.20);
-        }
+    animation:
+        dividerGlow 2s ease-in-out infinite;
+}
 
 
-        .company {
+@keyframes dividerGlow {
 
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+    0%,
+    100% {
 
-            font-size: 21px;
+        opacity: 0.4;
+    }
 
-            font-weight: 700;
+    50% {
 
-            letter-spacing: 0.7px;
-        }
+        opacity: 1;
 
+        box-shadow:
+            0 0 10px
+            rgba(255,255,255,0.5);
+    }
+}
 
-        /* =========================================
-           ALMANDO-STYLE HEADLINE
-        ========================================= */
 
-        .coupon-title {
+/* -----------------------------------------
+   FORM SECTION
+----------------------------------------- */
 
-            margin-top: 15px;
+.form-section {
 
-            font-family:
-                Georgia,
-                "Times New Roman",
-                serif;
+    animation:
+        formSlide 1.1s ease;
+}
 
-            font-size: 42px;
 
-            font-weight: 900;
+@keyframes formSlide {
 
-            font-style: italic;
+    from {
 
-            color: #8df246;
+        opacity: 0;
 
-            letter-spacing: 2px;
+        transform:
+            translateX(35px);
+    }
 
-            text-shadow:
-                0 3px 10px
-                rgba(0, 0, 0, 0.25);
-        }
+    to {
 
+        opacity: 1;
 
-        .coupon-subtitle {
+        transform:
+            translateX(0);
+    }
+}
 
-            margin-top: 5px;
 
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+/* -----------------------------------------
+   FORM HEADING
+----------------------------------------- */
 
-            font-size: 17px;
+.form-section h2 {
 
-            color: #e0f8d5;
+    position:
+        relative;
 
-            font-style: italic;
-        }
+    display:
+        inline-block;
+}
 
 
-        .coupon-code {
+.form-section h2::after {
 
-            margin-top: 16px;
+    content: "";
 
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+    position: absolute;
 
-            font-size: 17px;
+    left: 0;
 
-            font-weight: 700;
+    bottom: -6px;
 
-            letter-spacing: 1.5px;
+    width: 0;
 
-            color: white;
-        }
+    height: 3px;
 
+    background:
+        #6dcc38;
 
-        .coupon-valid {
+    border-radius:
+        10px;
 
-            margin-top: 12px;
+    animation:
+        headingLine 1.5s ease forwards;
+}
 
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
 
-            font-size: 15px;
+@keyframes headingLine {
 
-            font-weight: 700;
+    to {
+        width: 100%;
+    }
+}
 
-            color: #c9f8ba;
-        }
 
+/* -----------------------------------------
+   REGISTRATION NOTE
+----------------------------------------- */
 
-        /* =========================================
-           PRICE SECTION
-        ========================================= */
+.registration-note {
 
-        .coupon-bottom {
+    animation:
+        noteGlow 3s ease-in-out infinite;
+}
 
-            margin-top: auto;
 
-            padding:
-                18px 12px;
+@keyframes noteGlow {
 
-            border-top:
-                2px dashed
-                rgba(255, 255, 255, 0.5);
+    0%,
+    100% {
 
-            position: relative;
+        box-shadow:
+            0 0 0
+            rgba(91,201,52,0);
+    }
 
-            z-index: 2;
-        }
+    50% {
 
+        box-shadow:
+            0 5px 20px
+            rgba(91,201,52,0.12);
+    }
+}
 
-        .coupon-price {
 
-            display: flex;
+/* -----------------------------------------
+   INPUT ANIMATION
+----------------------------------------- */
 
-            align-items: center;
+.field {
 
-            justify-content: center;
+    animation:
+        fieldAppear 0.7s ease both;
+}
 
-            gap: 28px;
 
-            width: 100%;
-        }
+.field:nth-child(2) {
+    animation-delay:
+        0.15s;
+}
 
 
-        .price-box {
+.field:nth-child(3) {
+    animation-delay:
+        0.3s;
+}
 
-            display: flex;
 
-            flex-direction: column;
+.field:nth-child(4) {
+    animation-delay:
+        0.45s;
+}
 
-            align-items: center;
 
-            justify-content: center;
+@keyframes fieldAppear {
 
-            gap: 5px;
-        }
+    from {
 
+        opacity: 0;
 
-        .mode-label {
+        transform:
+            translateY(12px);
+    }
 
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+    to {
 
-            font-size: 14px;
+        opacity: 1;
 
-            font-weight: 900;
+        transform:
+            translateY(0);
+    }
+}
 
-            letter-spacing: 2px;
 
-            color: white;
-        }
+.field input,
+.field select {
 
+    transition:
+        all 0.35s ease;
+}
 
-        .price {
 
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+.field input:hover,
+.field select:hover {
 
-            font-size: 34px;
+    border-color:
+        #82c96d;
 
-            font-weight: 900;
+    transform:
+        translateY(-2px);
 
-            color: #8df246;
-        }
+    box-shadow:
+        0 5px 15px
+        rgba(50,130,90,0.10);
+}
 
 
-        .offer-text {
+.field input:focus,
+.field select:focus {
 
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+    transform:
+        scale(1.01);
+}
 
-            font-size: 11px;
 
-            font-weight: 700;
+/* -----------------------------------------
+   APPLY BUTTON SHINE
+----------------------------------------- */
 
-            color: #c9f8ba;
+.apply-btn,
+.register-btn {
 
-            letter-spacing: 0.8px;
-        }
+    position:
+        relative;
 
+    overflow:
+        hidden;
 
-        .divider {
+    transform:
+        translateZ(0);
+}
 
-            width: 2px;
 
-            height: 70px;
+.apply-btn::before,
+.register-btn::before {
 
-            background:
-                rgba(255, 255, 255, 0.4);
-        }
+    content: "";
 
+    position: absolute;
 
-        /* =========================================
-           FORM
-        ========================================= */
+    top: 0;
 
-        .form-section {
+    left: -120%;
 
-            padding: 10px;
-        }
+    width: 70%;
 
+    height: 100%;
 
-        .form-section h2 {
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.35),
+            transparent
+        );
 
-            font-family:
-                Georgia,
-                "Times New Roman",
-                serif;
+    transform:
+        skewX(-20deg);
 
-            font-size: 28px;
+    animation:
+        buttonShine 3.5s ease-in-out infinite;
+}
 
-            font-weight: 900;
 
-            font-style: italic;
+@keyframes buttonShine {
 
-            color: #123f32;
+    0% {
+        left: -120%;
+    }
 
-            margin-bottom: 20px;
-        }
+    45% {
+        left: 140%;
+    }
 
+    100% {
+        left: 140%;
+    }
+}
 
-        .registration-note {
 
-            background:
-                #eef9e9;
+/* -----------------------------------------
+   BUTTON HOVER
+----------------------------------------- */
 
-            border:
-                1px solid
-                #c6e7ba;
+.apply-btn:hover,
+.register-btn:hover {
 
-            border-radius:
-                10px;
+    transform:
+        translateY(-4px)
+        scale(1.02);
+}
 
-            padding:
-                12px 14px;
 
-            margin-bottom:
-                20px;
+/* -----------------------------------------
+   REGISTER BUTTON PULSE
+----------------------------------------- */
 
-            color:
-                #315b42;
+.register-btn {
 
-            font-size:
-                14px;
+    animation:
+        registerPulse 2s ease-in-out infinite;
+}
 
-            line-height:
-                1.5;
-        }
 
+@keyframes registerPulse {
 
-        .field {
+    0%,
+    100% {
 
-            margin-bottom: 18px;
-        }
+        box-shadow:
+            0 8px 20px
+            rgba(65,150,40,0.25);
+    }
 
+    50% {
 
-        .field label {
+        box-shadow:
+            0 10px 30px
+            rgba(65,150,40,0.50);
+    }
+}
 
-            display: block;
 
-            margin-bottom: 7px;
+/* -----------------------------------------
+   RESULT SUCCESS
+----------------------------------------- */
 
-            font-size: 15px;
+.result.success {
 
-            font-weight: 700;
+    animation:
+        successEntrance 0.7s
+        cubic-bezier(.17,.67,.35,1.4);
+}
 
-            color: #29483e;
-        }
 
+@keyframes successEntrance {
 
-        .field input,
-        .field select {
+    0% {
 
-            width: 100%;
+        opacity: 0;
 
-            padding:
-                13px 14px;
+        transform:
+            scale(0.75)
+            translateY(20px);
+    }
 
-            border:
-                2px solid
-                #d5e2db;
+    70% {
 
-            border-radius:
-                10px;
+        transform:
+            scale(1.04);
+    }
 
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+    100% {
 
-            font-size:
-                16px;
+        opacity: 1;
 
-            outline: none;
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
 
-            transition:
-                0.3s;
 
-            background:
-                #fbfdfb;
-        }
+/* -----------------------------------------
+   SUCCESS HEADING
+----------------------------------------- */
 
+.result.success h3 {
 
-        .field input:focus,
-        .field select:focus {
+    animation:
+        successGlow 1.5s
+        ease-in-out infinite;
+}
 
-            border-color:
-                #5bc934;
 
-            box-shadow:
-                0 0 0 4px
-                rgba(91, 201, 52, 0.14);
+@keyframes successGlow {
 
-            background:
-                white;
-        }
+    0%,
+    100% {
 
+        text-shadow:
+            0 0 0
+            rgba(40,117,42,0);
+    }
 
-        /* =========================================
-           APPLY COUPON BUTTON
-        ========================================= */
+    50% {
 
-        .apply-btn {
+        text-shadow:
+            0 0 10px
+            rgba(40,117,42,0.4);
+    }
+}
 
-            width: 100%;
 
-            padding: 15px;
+/* -----------------------------------------
+   RESULT ROWS
+----------------------------------------- */
 
-            border: none;
+.result.success .result-row {
 
-            border-radius: 11px;
+    animation:
+        resultRowAppear 0.5s ease both;
+}
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #123f32,
-                    #287052
-                );
 
-            color: white;
+.result.success .result-row:nth-child(2) {
+    animation-delay: 0.1s;
+}
 
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+.result.success .result-row:nth-child(3) {
+    animation-delay: 0.2s;
+}
 
-            font-size: 17px;
+.result.success .result-row:nth-child(4) {
+    animation-delay: 0.3s;
+}
 
-            font-weight: 800;
+.result.success .result-row:nth-child(5) {
+    animation-delay: 0.4s;
+}
 
-            cursor: pointer;
+.result.success .result-row:nth-child(6) {
+    animation-delay: 0.5s;
 
-            transition:
-                0.3s;
+}
 
-            box-shadow:
-                0 8px 20px
-                rgba(23, 63, 52, 0.20);
-        }
 
+@keyframes resultRowAppear {
 
-        .apply-btn:hover {
+    from {
 
-            transform:
-                translateY(-2px);
+        opacity: 0;
 
-            box-shadow:
-                0 10px 25px
-                rgba(23, 63, 52, 0.30);
-        }
+        transform:
+            translateX(-15px);
+    }
 
+    to {
 
-        .apply-btn:active {
+        opacity: 1;
 
-            transform:
-                scale(0.98);
-        }
+        transform:
+            translateX(0);
+    }
+}
 
 
-        /* =========================================
-           RESULT
-        ========================================= */
+/* -----------------------------------------
+   SAVING HIGHLIGHT
+----------------------------------------- */
 
-        .result {
+.saving {
 
-            margin-top: 20px;
+    animation:
+        savingPulse 1.5s ease-in-out infinite;
+}
 
-            border-radius: 13px;
 
-            padding: 18px;
+@keyframes savingPulse {
 
-            display: none;
-        }
+    0%,
+    100% {
 
+        transform:
+            scale(1);
+    }
 
-        .result.success {
+    50% {
 
-            display: block;
+        transform:
+            scale(1.08);
+    }
+}
 
-            background:
-                #effbea;
 
-            border:
-                1px solid
-                #a6dc91;
+/* -----------------------------------------
+   RESET BUTTON
+----------------------------------------- */
 
-            animation:
-                resultPop 0.5s ease;
-        }
+.reset-btn {
 
+    transition:
+        all 0.3s ease;
+}
 
-        .result.error {
 
-            display: block;
+.reset-btn:hover {
 
-            background:
-                #fff0f0;
+    transform:
+        translateY(-2px)
+        scale(1.01);
+}
 
-            border:
-                1px solid
-                #e3a0a0;
 
-            color:
-                #a00000;
+/* -----------------------------------------
+   CONFETTI IMPROVEMENT
+----------------------------------------- */
 
-            animation:
-                shake 0.4s ease;
-        }
+.confetti {
 
+    border-radius:
+        2px;
 
-        .result h3 {
+    box-shadow:
+        0 0 6px
+        rgba(114,216,60,0.4);
 
-            font-family:
-                Georgia,
-                "Times New Roman",
-                serif;
+    animation:
+        fall 3s linear forwards,
+        confettiSpin 1s linear infinite;
+}
 
-            font-size:
-                21px;
 
-            color:
-                #28752a;
+@keyframes confettiSpin {
 
-            margin-bottom:
-                12px;
-        }
+    0% {
+        rotate: 0deg;
+    }
 
+    50% {
+        rotate: 180deg;
+    }
 
-        .result-row {
+    100% {
+        rotate: 360deg;
+    }
+}
 
-            display: flex;
 
-            justify-content:
-                space-between;
+/* -----------------------------------------
+   COUPON HOLES GLOW
+----------------------------------------- */
 
-            align-items:
-                center;
+.left-hole,
+.right-hole {
 
-            gap:
-                15px;
+    transition:
+        box-shadow 0.4s ease;
+}
 
-            margin:
-                9px 0;
 
-            font-size:
-                15px;
-        }
+.coupon:hover .left-hole,
+.coupon:hover .right-hole {
 
+    box-shadow:
+        0 0 15px
+        rgba(255,255,255,0.5);
+}
 
-        .normal-price {
 
-            color:
-                #777;
+/* -----------------------------------------
+   MOBILE OPTIMIZATION
+----------------------------------------- */
 
-            text-decoration:
-                line-through;
-        }
+@media (max-width: 800px) {
 
+    .coupon:hover {
 
-        .final-price {
+        transform:
+            translateY(-5px)
+            scale(1.01);
+    }
 
-            color:
-                #176044;
+}
 
-            font-size:
-                26px;
 
-            font-weight:
-                900;
-        }
+@media (max-width: 500px) {
 
+    .main-card {
 
-        .saving {
+        animation:
+            cardEntrance 0.8s ease;
+    }
 
-            color:
-                #28752a;
 
-            font-weight:
-                800;
-        }
+    .coupon:hover {
 
+        transform:
+            translateY(-3px);
+    }
 
-        /* =========================================
-           REGISTER BUTTON
-        ========================================= */
 
-        .register-btn {
+    .coupon-title {
 
-            width: 100%;
+        animation:
+            earlyBirdGlow 2.5s ease-in-out infinite;
+    }
 
-            margin-top: 16px;
-
-            padding: 15px;
-
-            border: none;
-
-            border-radius: 11px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #6dcc38,
-                    #3e9e27
-                );
-
-            color: white;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
-
-            font-size: 18px;
-
-            font-weight: 900;
-
-            cursor: pointer;
-
-            text-decoration: none;
-
-            display: block;
-
-            text-align: center;
-
-            box-shadow:
-                0 8px 20px
-                rgba(65, 150, 40, 0.25);
-
-            transition:
-                0.3s;
-        }
-
-
-        .register-btn:hover {
-
-            transform:
-                translateY(-2px);
-
-            box-shadow:
-                0 12px 25px
-                rgba(65, 150, 40, 0.35);
-        }
-
-
-        /* =========================================
-           RESET
-        ========================================= */
-
-        .reset-btn {
-
-            margin-top:
-                10px;
-
-            width:
-                100%;
-
-            padding:
-                11px;
-
-            border:
-                1px solid
-                #c9d8d0;
-
-            background:
-                white;
-
-            color:
-                #315047;
-
-            border-radius:
-                10px;
-
-            cursor:
-                pointer;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
-
-            font-size:
-                15px;
-
-            font-weight:
-                700;
-
-            transition:
-                0.3s;
-        }
-
-
-        .reset-btn:hover {
-
-            background:
-                #eef7f1;
-
-            border-color:
-                #82b99b;
-        }
-
-
-        /* =========================================
-           CONFETTI
-        ========================================= */
-
-        .confetti {
-
-            position:
-                fixed;
-
-            width:
-                8px;
-
-            height:
-                14px;
-
-            top:
-                -20px;
-
-            z-index:
-                999;
-
-            animation:
-                fall 3s linear forwards;
-        }
-
-
-        @keyframes fall {
-
-            0% {
-
-                transform:
-                    translateY(0)
-                    rotate(0deg);
-
-                opacity:
-                    1;
-            }
-
-            100% {
-
-                transform:
-                    translateY(110vh)
-                    rotate(720deg);
-
-                opacity:
-                    0;
-            }
-        }
-
-
-        /* =========================================
-           ANIMATIONS
-        ========================================= */
-
-        @keyframes resultPop {
-
-            0% {
-
-                transform:
-                    scale(0.85);
-
-                opacity:
-                    0;
-            }
-
-            70% {
-
-                transform:
-                    scale(1.05);
-            }
-
-            100% {
-
-                transform:
-                    scale(1);
-
-                opacity:
-                    1;
-            }
-        }
-
-
-        @keyframes shake {
-
-            0%,
-            100% {
-
-                transform:
-                    translateX(0);
-            }
-
-            25% {
-
-                transform:
-                    translateX(-8px);
-            }
-
-            75% {
-
-                transform:
-                    translateX(8px);
-            }
-        }
-
-
-        /* =========================================
-           MOBILE
-        ========================================= */
-
-        @media (max-width: 800px) {
-
-            .main-card {
-
-                grid-template-columns:
-                    1fr;
-            }
-
-
-            .coupon-title {
-
-                font-size:
-                    34px;
-            }
-
-        }
-
-
-        @media (max-width: 500px) {
-
-            body {
-
-                padding:
-                    15px;
-            }
-
-
-            .header h1 {
-
-                font-size:
-                    27px;
-            }
-
-
-            .header-logo {
-
-                width:
-                    70px;
-
-                height:
-                    70px;
-            }
-
-
-            .main-card {
-
-                padding:
-                    15px;
-            }
-
-
-            .coupon {
-
-                min-height:
-                    390px;
-            }
-
-
-            .coupon-title {
-
-                font-size:
-                    28px;
-            }
-
-
-            .company {
-
-                font-size:
-                    17px;
-            }
-
-
-            .coupon-code {
-
-                font-size:
-                    13px;
-            }
-
-
-            .coupon-price {
-
-                gap:
-                    12px;
-            }
-
-
-            .price {
-
-                font-size:
-                    25px;
-            }
-
-
-            .divider {
-
-                height:
-                    55px;
-            }
-
-
-            .result-row {
-
-                flex-direction:
-                    column;
-
-                align-items:
-                    flex-start;
-
-                gap:
-                    3px;
-            }
-
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-
-    <!-- BACKGROUND -->
-
-    <div class="circle one"></div>
-
-    <div class="circle two"></div>
-
-
-    <div class="container">
-
-
-        <!-- ======================================
-             HEADER
-        ======================================= -->
-
-        <div class="header">
-
-
-            <img
-                class="header-logo"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ95SBv6kI4o1AGE59Bg6SySDUEXnCnm4JPBsO6teu-Q&s=10"
-                alt="Nextgen Edutantr Logo"
-            >
-
-
-            <h1>
-                Nextgen Edutantr Pvt Ltd
-            </h1>
-
-
-            <p>
-                Early Bird Special Coupon Registration
-            </p>
-
-        </div>
-
-
-        <!-- ======================================
-             MAIN CARD
-        ======================================= -->
-
-        <div class="main-card">
-
-
-            <!-- ==================================
-                 COUPON
-            =================================== -->
-
-            <div class="coupon">
-
-
-                <div class="left-hole"></div>
-
-                <div class="right-hole"></div>
-
-
-                <div class="coupon-top">
-
-
-                    <img
-                        class="coupon-logo"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ95SBv6kI4o1AGE59Bg6SySDUEXnCnm4JPBsO6teu-Q&s=10"
-                        alt="Nextgen Edutantr Logo"
-                    >
-
-
-                    <div class="company">
-
-                        Nextgen Edutantr Pvt Ltd
-
-                    </div>
-
-
-                    <div class="coupon-title">
-
-                        EARLY BIRD
-
-                    </div>
-
-
-                    <div class="coupon-subtitle">
-
-                        Exclusive Registration Offer
-
-                    </div>
-
-
-                    <!-- UPDATED COUPON CODE -->
-
-                    <div class="coupon-code">
-
-                        CODE - EDUSEP26
-
-                    </div>
-
-
-                    <!-- UPDATED VALID DATE -->
-
-                    <div class="coupon-valid">
-
-                        VALID UNTIL 30 SEPTEMBER 2026
-
-                    </div>
-
-                </div>
-
-
-                <!-- ==================================
-                     PRICES
-                =================================== -->
-
-                <div class="coupon-bottom">
-
-
-                    <div class="coupon-price">
-
-
-                        <!-- ONLINE -->
-
-                        <div class="price-box">
-
-                            <span class="mode-label">
-                                ONLINE
-                            </span>
-
-                            <span class="price">
-                                ₹5,000
-                            </span>
-
-                            <span class="offer-text">
-                                EARLY BIRD PRICE
-                            </span>
-
-                        </div>
-
-
-                        <div class="divider"></div>
-
-
-                        <!-- OFFLINE -->
-
-                        <div class="price-box">
-
-                            <span class="mode-label">
-                                OFFLINE
-                            </span>
-
-                            <span class="price">
-                                ₹8,000
-                            </span>
-
-                            <span class="offer-text">
-                                EARLY BIRD PRICE
-                            </span>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ==================================
-                 VALIDATION / REGISTRATION
-            =================================== -->
-
-            <div class="form-section">
-
-
-                <h2>
-                    Validate & Register
-                </h2>
-
-
-                <div class="registration-note">
-
-                    Enter your Academic Counsellor name,
-                    select your preferred mode and apply
-                    the Early Bird coupon to continue
-                    with registration.
-
-                </div>
-
-
-                <!-- COUNSELLOR -->
-
-                <div class="field">
-
-                    <label for="counsellor">
-
-                        Academic Counsellor Name
-
-                    </label>
-
-
-                    <input
-                        type="text"
-                        id="counsellor"
-                        placeholder="Enter counsellor name"
-                    >
-
-                </div>
-
-
-                <!-- MODE -->
-
-                <div class="field">
-
-                    <label for="mode">
-
-                        Select Training Mode
-
-                    </label>
-
-
-                    <select id="mode">
-
-                        <option value="online">
-
-                            Online - ₹5,000
-
-                        </option>
-
-
-                        <option value="offline">
-
-                            Offline - ₹8,000
-
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- COUPON -->
-
-                <div class="field">
-
-                    <label for="couponInput">
-
-                        Coupon Code
-
-                    </label>
-
-
-                    <input
-                        type="text"
-                        id="couponInput"
-                        placeholder="Enter coupon code"
-                        autocomplete="off"
-                    >
-
-                </div>
-
-
-                <!-- APPLY -->
-
-                <button
-                    class="apply-btn"
-                    onclick="validateCoupon()"
-                >
-
-                    Apply Coupon
-
-                </button>
-
-
-                <!-- RESULT -->
-
-                <div
-                    id="result"
-                    class="result"
-                ></div>
-
-
-                <!-- RESET -->
-
-                <button
-                    class="reset-btn"
-                    onclick="resetForm()"
-                >
-
-                    Reset
-
-                </button>
-
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <script>
-
-
-        /* =========================================
-           COUPON
-        ========================================= */
-
-        const COUPON_CODE =
-            "EDUSEP26";
-
-
-        /* =========================================
-           VALID UNTIL
-           
-           30 September 2026
-        ========================================= */
-
-        const VALID_UNTIL =
-            new Date("2026-09-30T23:59:59");
-
-
-        /* =========================================
-           PRICES
-        ========================================= */
-
-        const prices = {
-
-            online: {
-
-                normal: 10000,
-
-                coupon: 5000
-
-            },
-
-            offline: {
-
-                normal: 15000,
-
-                coupon: 8000
-
-            }
-
-        };
-
-
-        /* =========================================
-           CURRENCY
-        ========================================= */
-
-        function formatCurrency(amount) {
-
-            return "₹" +
-                amount.toLocaleString("en-IN");
-
-        }
-
-
-        /* =========================================
-           VALIDATE
-        ========================================= */
-
-        function validateCoupon() {
-
-
-            const counsellor =
-                document
-                    .getElementById("counsellor")
-                    .value
-                    .trim();
-
-
-            const mode =
-                document
-                    .getElementById("mode")
-                    .value;
-
-
-            const coupon =
-                document
-                    .getElementById("couponInput")
-                    .value
-                    .trim()
-                    .toUpperCase();
-
-
-            const result =
-                document
-                    .getElementById("result");
-
-
-            /* COUNSELLOR */
-
-            if (!counsellor) {
-
-                showError(
-                    "Please enter the Academic Counsellor name."
-                );
-
-                return;
-            }
-
-
-            /* COUPON */
-
-            if (!coupon) {
-
-                showError(
-                    "Please enter the coupon code."
-                );
-
-                return;
-            }
-
-
-            /* INVALID COUPON */
-
-            if (coupon !== COUPON_CODE) {
-
-                showError(
-                    "Invalid coupon code. Please enter the correct coupon code."
-                );
-
-                return;
-            }
-
-
-            /* DATE VALIDATION */
-
-            const today =
-                new Date();
-
-
-            if (today > VALID_UNTIL) {
-
-                showError(
-                    "Sorry, this Early Bird coupon has expired. The offer was valid until 30 September 2026."
-                );
-
-                return;
-            }
-
-
-            /* PRICES */
-
-            const normalPrice =
-                prices[mode].normal;
-
-
-            const finalPrice =
-                prices[mode].coupon;
-
-
-            const savings =
-                normalPrice -
-                finalPrice;
-
-
-            /* SUCCESS */
-
-            result.className =
-                "result success";
-
-
-            result.innerHTML = `
-
-                <h3>
-                    ✓ Coupon Applied Successfully!
-                </h3>
-
-
-                <div class="result-row">
-
-                    <span>
-                        Academic Counsellor
-                    </span>
-
-                    <strong>
-                        ${escapeHTML(counsellor)}
-                    </strong>
-
-                </div>
-
-
-                <div class="result-row">
-
-                    <span>
-                        Training Mode
-                    </span>
-
-                    <strong>
-                        ${mode.toUpperCase()}
-                    </strong>
-
-                </div>
-
-
-                <div class="result-row">
-
-                    <span>
-                        Coupon
-                    </span>
-
-                    <strong>
-                        ${COUPON_CODE}
-                    </strong>
-
-                </div>
-
-
-                <div class="result-row">
-
-                    <span>
-                        Normal Price
-                    </span>
-
-                    <span class="normal-price">
-
-                        ${formatCurrency(normalPrice)}
-
-                    </span>
-
-                </div>
-
-
-                <div class="result-row">
-
-                    <span>
-                        Early Bird Price
-                    </span>
-
-                    <span class="final-price">
-
-                        ${formatCurrency(finalPrice)}
-
-                    </span>
-
-                </div>
-
-
-                <div class="result-row">
-
-                    <span>
-                        You Save
-                    </span>
-
-                    <span class="saving">
-
-                        ${formatCurrency(savings)}
-
-                    </span>
-
-                </div>
-
-
-                <!-- RAZORPAY REGISTRATION -->
-
-                <a
-                    href="https://pages.razorpay.com/pl_TRYNqSsf77tJlX/view"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="register-btn"
-                >
-
-                    Proceed to Registration & Payment →
-
-                </a>
-
-            `;
-
-
-            /* CONFETTI */
-
-            createConfetti();
-
-        }
-
-
-        /* =========================================
-           ERROR
-        ========================================= */
-
-        function showError(message) {
-
-
-            const result =
-                document
-                    .getElementById("result");
-
-
-            result.className =
-                "result error";
-
-
-            result.innerHTML = `
-
-                <strong>
-
-                    ⚠ ${message}
-
-                </strong>
-
-            `;
-
-        }
-
-
-        /* =========================================
-           CONFETTI
-        ========================================= */
-
-        function createConfetti() {
-
-
-            const count = 70;
-
-
-            for (
-                let i = 0;
-                i < count;
-                i++
-            ) {
-
-
-                const confetti =
-                    document
-                        .createElement("div");
-
-
-                confetti.className =
-                    "confetti";
-
-
-                confetti.style.left =
-                    Math.random() *
-                    100 +
-                    "vw";
-
-
-                confetti.style.animationDelay =
-                    Math.random() *
-                    0.8 +
-                    "s";
-
-
-                confetti.style.background =
-                    Math.random() > 0.5
-                        ? "#72d83c"
-                        : "#123f32";
-
-
-                confetti.style.transform =
-                    `rotate(
-                        ${Math.random() * 360}deg
-                    )`;
-
-
-                document.body.appendChild(
-                    confetti
-                );
-
-
-                setTimeout(
-                    () => {
-
-                        confetti.remove();
-
-                    },
-                    4000
-                );
-
-            }
-
-        }
-
-
-        /* =========================================
-           RESET
-        ========================================= */
-
-        function resetForm() {
-
-
-            document
-                .getElementById("counsellor")
-                .value =
-                "";
-
-
-            document
-                .getElementById("couponInput")
-                .value =
-                "";
-
-
-            document
-                .getElementById("mode")
-                .value =
-                "online";
-
-
-            const result =
-                document
-                    .getElementById("result");
-
-
-            result.className =
-                "result";
-
-
-            result.innerHTML =
-                "";
-
-        }
-
-
-        /* =========================================
-           SECURITY
-        ========================================= */
-
-        function escapeHTML(value) {
-
-
-            const div =
-                document
-                    .createElement("div");
-
-
-            div.textContent =
-                value;
-
-
-            return div.innerHTML;
-
-        }
-
-    </script>
-
-</body>
-
-</html>
+}
