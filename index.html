@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Early Bird Coupon - Nextgen Edutantr</title>
+
+    <style>
+
+        /* ==============================
+           GLOBAL
+        ============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #dff8d7,
+                    transparent 35%
+                ),
+
+                radial-gradient(
+                    circle at bottom right,
+                    #b9edaa,
+                    transparent 35%
+                ),
+
+                #f4f8f4;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 30px 15px;
+
+            overflow-x: hidden;
+        }
+
+
+        /* ==============================
+           BACKGROUND CIRCLES
+        ============================== */
+
+        .circle {
+
+            position: fixed;
+
+            border-radius: 50%;
+
+            filter: blur(3px);
+
+            opacity: 0.22;
+
+            z-index: -1;
+
+            animation:
+                float 8s ease-in-out infinite;
+        }
+
+
+        .circle.one {
+
+            width: 180px;
+
+            height: 180px;
+
+            background: #72d83c;
+
+            top: 5%;
+
+            left: 5%;
+        }
+
+
+        .circle.two {
+
+            width: 250px;
+
+            height: 250px;
+
+            background: #123f32;
+
+            bottom: 5%;
+
+            right: 5%;
+
+            animation-delay: 2s;
+        }
+
+
+        @keyframes float {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+
+                transform:
+                    translateY(-30px);
+            }
+        }
+
+
+        /* ==============================
+           CONTAINER
+        ============================== */
+
+        .container {
+
+            width: 100%;
+
+            max-width: 1050px;
+        }
+
+
+        /* ==============================
+           HEADER
+        ============================== */
+
+        .header {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+            animation:
+                fadeDown 0.8s ease;
+        }
+
+
+        .header-logo {
+
+            width: 85px;
+
+            height: 85px;
+
+            object-fit: contain;
+
+            margin-bottom: 10px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            padding: 5px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(18, 63, 50, 0.20);
+        }
+
+
+        .header h1 {
+
+            font-size: 34px;
+
+            color: #123f32;
+
+            margin-bottom: 8px;
+        }
+
+
+        .header p {
+
+            color: #527064;
+
+            font-size: 15px;
+        }
+
+
+        @keyframes fadeDown {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(-25px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        /* ==============================
+           MAIN CARD
+        ============================== */
+
+        .main-card {
+
+            background:
+                rgba(255, 255, 255, 0.97);
+
+            border-radius: 22px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 20px 60px
+                rgba(18, 63, 50, 0.15);
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 25px;
+
+            animation:
+                fadeUp 0.8s ease;
+
+            border:
+                1px solid
+                rgba(50, 130, 90, 0.10);
+        }
+
+
+        @keyframes fadeUp {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(30px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        /* ==============================
+           COUPON CARD
+        ============================== */
+
+        .coupon {
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #123f32,
+                    #287052
+                );
+
+            min-height: 380px;
+
+            border:
+                7px solid
+                #0d2d24;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            flex-direction: column;
+
+            color: white;
+
+            box-shadow:
+                0 15px 35px
+                rgba(16, 45, 37, 0.25);
+        }
+
+
+        /* Decorative glow */
+
+        .coupon::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 240px;
+
+            height: 240px;
+
+            background: #8df246;
+
+            border-radius: 50%;
+
+            top: -120px;
+
+            right: -100px;
+
+            opacity: 0.12;
+        }
+
+
+        /* Left ticket hole */
+
+        .coupon .left-hole {
+
+            position: absolute;
+
+            width: 30px;
+
+            height: 30px;
+
+            background: white;
+
+            border-radius: 50%;
+
+            top: 50%;
+
+            left: -19px;
+
+            transform:
+                translateY(-50%);
+
+            z-index: 5;
+        }
+
+
+        /* Right ticket hole */
+
+        .coupon .right-hole {
+
+            position: absolute;
+
+            width: 30px;
+
+            height: 30px;
+
+            background: white;
+
+            border-radius: 50%;
+
+            top: 50%;
+
+            right: -19px;
+
+            transform:
+                translateY(-50%);
+
+            z-index: 5;
+        }
+
+
+        /* ==============================
+           COUPON TOP
+        ============================== */
+
+        .coupon-top {
+
+            text-align: center;
+
+            padding:
+                20px 15px 10px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .coupon-logo {
+
+            width: 65px;
+
+            height: 65px;
+
+            object-fit: contain;
+
+            background: white;
+
+            border-radius: 50%;
+
+            padding: 5px;
+
+            margin-bottom: 10px;
+
+            box-shadow:
+                0 5px 15px
+                rgba(0, 0, 0, 0.20);
+        }
+
+
+        .company {
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+        }
+
+
+        .coupon-title {
+
+            margin-top: 15px;
+
+            font-size: 40px;
+
+            font-weight: 900;
+
+            color: #8df246;
+
+            letter-spacing: 2px;
+
+            text-shadow:
+                0 3px 10px
+                rgba(0, 0, 0, 0.25);
+        }
+
+
+        .coupon-code {
+
+            margin-top: 15px;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+
+            color: white;
+        }
+
+
+        .coupon-valid {
+
+            margin-top: 12px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            color: #c9f8ba;
+        }
+
+
+        /* ==============================
+           PRICE SECTION
+        ============================== */
+
+        .coupon-bottom {
+
+            margin-top: auto;
+
+            padding:
+                18px 12px;
+
+            border-top:
+                2px dashed
+                rgba(255, 255, 255, 0.5);
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .coupon-price {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 25px;
+
+            width: 100%;
+        }
+
+
+        .price-box {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 5px;
+        }
+
+
+        .mode-label {
+
+            font-size: 13px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            color: white;
+        }
+
+
+        .price {
+
+            font-size: 32px;
+
+            font-weight: 900;
+
+            color: #8df246;
+        }
+
+
+        .offer-text {
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            color: #c9f8ba;
+
+            letter-spacing: 1px;
+        }
+
+
+        .divider {
+
+            width: 2px;
+
+            height: 65px;
+
+            background:
+                rgba(255, 255, 255, 0.4);
+        }
+
+
+        /* ==============================
+           FORM SECTION
+        ============================== */
+
+        .form-section {
+
+            padding: 10px;
+        }
+
+
+        .form-section h2 {
+
+            color: #123f32;
+
+            margin-bottom: 20px;
+
+            font-size: 25px;
+        }
+
+
+        .field {
+
+            margin-bottom: 18px;
+        }
+
+
+        .field label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            color: #29483e;
+        }
+
+
+        .field input,
+        .field select {
+
+            width: 100%;
+
+            padding:
+                13px 14px;
+
+            border:
+                2px solid
+                #d5e2db;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition:
+                0.3s;
+
+            background:
+                #fbfdfb;
+        }
+
+
+        .field input:focus,
+        .field select:focus {
+
+            border-color:
+                #5bc934;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(91, 201, 52, 0.14);
+
+            background: white;
+        }
+
+
+        /* ==============================
+           APPLY BUTTON
+        ============================== */
+
+        .apply-btn {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #123f32,
+                    #287052
+                );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition:
+                0.3s;
+
+            box-shadow:
+                0 8px 20px
+                rgba(23, 63, 52, 0.20);
+        }
+
+
+        .apply-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(23, 63, 52, 0.30);
+        }
+
+
+        .apply-btn:active {
+
+            transform:
+                scale(0.98);
+        }
+
+
+        /* ==============================
+           RESULT
+        ============================== */
+
+        .result {
+
+            margin-top: 20px;
+
+            border-radius: 13px;
+
+            padding: 18px;
+
+            display: none;
+        }
+
+
+        .result.success {
+
+            display: block;
+
+            background:
+                #effbea;
+
+            border:
+                1px solid
+                #a6dc91;
+
+            animation:
+                resultPop 0.5s ease;
+        }
+
+
+        .result.error {
+
+            display: block;
+
+            background:
+                #fff0f0;
+
+            border:
+                1px solid
+                #e3a0a0;
+
+            color: #a00000;
+
+            animation:
+                shake 0.4s ease;
+        }
+
+
+        @keyframes resultPop {
+
+            0% {
+
+                transform:
+                    scale(0.85);
+
+                opacity: 0;
+            }
+
+            70% {
+
+                transform:
+                    scale(1.05);
+            }
+
+            100% {
+
+                transform:
+                    scale(1);
+
+                opacity: 1;
+            }
+        }
+
+
+        @keyframes shake {
+
+            0%,
+            100% {
+
+                transform:
+                    translateX(0);
+            }
+
+            25% {
+
+                transform:
+                    translateX(-8px);
+            }
+
+            75% {
+
+                transform:
+                    translateX(8px);
+            }
+        }
+
+
+        .result h3 {
+
+            color:
+                #28752a;
+
+            margin-bottom:
+                12px;
+        }
+
+
+        .result-row {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap: 15px;
+
+            margin:
+                8px 0;
+
+            font-size:
+                14px;
+        }
+
+
+        .normal-price {
+
+            color: #777;
+
+            text-decoration:
+                line-through;
+        }
+
+
+        .final-price {
+
+            color:
+                #176044;
+
+            font-size:
+                25px;
+
+            font-weight:
+                900;
+        }
+
+
+        .saving {
+
+            color:
+                #28752a;
+
+            font-weight:
+                800;
+        }
+
+
+        /* ==============================
+           RESET BUTTON
+        ============================== */
+
+        .reset-btn {
+
+            margin-top:
+                10px;
+
+            width:
+                100%;
+
+            padding:
+                11px;
+
+            border:
+                1px solid
+                #c9d8d0;
+
+            background:
+                white;
+
+            color:
+                #315047;
+
+            border-radius:
+                10px;
+
+            cursor:
+                pointer;
+
+            font-weight:
+                700;
+
+            transition:
+                0.3s;
+        }
+
+
+        .reset-btn:hover {
+
+            background:
+                #eef7f1;
+
+            border-color:
+                #82b99b;
+        }
+
+
+        /* ==============================
+           CONFETTI
+        ============================== */
+
+        .confetti {
+
+            position:
+                fixed;
+
+            width:
+                8px;
+
+            height:
+                14px;
+
+            top:
+                -20px;
+
+            z-index:
+                999;
+
+            background:
+                #72d83c;
+
+            animation:
+                fall 3s linear forwards;
+        }
+
+
+        @keyframes fall {
+
+            0% {
+
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity:
+                    1;
+            }
+
+            100% {
+
+                transform:
+                    translateY(110vh)
+                    rotate(720deg);
+
+                opacity:
+                    0;
+            }
+        }
+
+
+        /* ==============================
+           RESPONSIVE
+        ============================== */
+
+        @media (max-width: 800px) {
+
+            .main-card {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .coupon-title {
+
+                font-size:
+                    34px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            body {
+
+                padding:
+                    15px;
+            }
+
+
+            .header h1 {
+
+                font-size:
+                    27px;
+            }
+
+
+            .header-logo {
+
+                width:
+                    65px;
+
+                height:
+                    65px;
+            }
+
+
+            .main-card {
+
+                padding:
+                    15px;
+            }
+
+
+            .coupon {
+
+                min-height:
+                    360px;
+            }
+
+
+            .coupon-title {
+
+                font-size:
+                    28px;
+            }
+
+
+            .company {
+
+                font-size:
+                    16px;
+            }
+
+
+            .coupon-code {
+
+                font-size:
+                    12px;
+            }
+
+
+            .coupon-price {
+
+                gap:
+                    12px;
+            }
+
+
+            .price {
+
+                font-size:
+                    25px;
+            }
+
+
+            .divider {
+
+                height:
+                    55px;
+            }
+
+
+            .result-row {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+                gap:
+                    3px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BACKGROUND -->
+
+    <div class="circle one"></div>
+
+    <div class="circle two"></div>
+
+
+    <div class="container">
+
+
+        <!-- ==========================
+             HEADER
+        =========================== -->
+
+        <div class="header">
+
+            <img
+                class="header-logo"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ95SBv6kI4o1AGE59Bg6SySDUEXnCnm4JPBsO6teu-Q&s=10"
+                alt="Nextgen Edutantr Logo"
+            >
+
+            <h1>
+                Nextgen Edutantr Pvt Ltd
+            </h1>
+
+            <p>
+                Early Bird Special Coupon Validation
+            </p>
+
+        </div>
+
+
+        <!-- ==========================
+             MAIN CARD
+        =========================== -->
+
+        <div class="main-card">
+
+
+            <!-- ==========================
+                 COUPON
+            =========================== -->
+
+            <div class="coupon">
+
+
+                <!-- Ticket holes -->
+
+                <div class="left-hole"></div>
+
+                <div class="right-hole"></div>
+
+
+                <div class="coupon-top">
+
+
+                    <img
+                        class="coupon-logo"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ95SBv6kI4o1AGE59Bg6SySDUEXnCnm4JPBsO6teu-Q&s=10"
+                        alt="Nextgen Edutantr Logo"
+                    >
+
+
+                    <div class="company">
+
+                        Nextgen Edutantr Pvt Ltd
+
+                    </div>
+
+
+                    <div class="coupon-title">
+
+                        EARLY BIRD
+
+                    </div>
+
+
+                    <div class="coupon-code">
+
+                        CODE - NGEARLY2026
+
+                    </div>
+
+
+                    <div class="coupon-valid">
+
+                        VALID UNTIL 10 SEPTEMBER 2026
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================
+                     BOTH PRICES
+                =========================== -->
+
+                <div class="coupon-bottom">
+
+
+                    <div class="coupon-price">
+
+
+                        <!-- ONLINE -->
+
+                        <div class="price-box">
+
+                            <span class="mode-label">
+
+                                ONLINE
+
+                            </span>
+
+                            <span class="price">
+
+                                ₹5,000
+
+                            </span>
+
+                            <span class="offer-text">
+
+                                EARLY BIRD PRICE
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- DIVIDER -->
+
+                        <div class="divider"></div>
+
+
+                        <!-- OFFLINE -->
+
+                        <div class="price-box">
+
+                            <span class="mode-label">
+
+                                OFFLINE
+
+                            </span>
+
+                            <span class="price">
+
+                                ₹8,000
+
+                            </span>
+
+                            <span class="offer-text">
+
+                                EARLY BIRD PRICE
+
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==========================
+                 VALIDATION FORM
+            =========================== -->
+
+            <div class="form-section">
+
+
+                <h2>
+
+                    Validate Coupon
+
+                </h2>
+
+
+                <!-- COUNSELLOR -->
+
+                <div class="field">
+
+                    <label for="counsellor">
+
+                        Academic Counsellor Name
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="counsellor"
+                        placeholder="Enter counsellor name"
+                    >
+
+                </div>
+
+
+                <!-- MODE -->
+
+                <div class="field">
+
+                    <label for="mode">
+
+                        Select Mode
+
+                    </label>
+
+
+                    <select id="mode">
+
+                        <option value="online">
+
+                            Online - ₹5,000
+
+                        </option>
+
+
+                        <option value="offline">
+
+                            Offline - ₹8,000
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- COUPON -->
+
+                <div class="field">
+
+                    <label for="couponInput">
+
+                        Coupon Code
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="couponInput"
+                        placeholder="Enter coupon code"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <!-- APPLY -->
+
+                <button
+                    class="apply-btn"
+                    onclick="validateCoupon()"
+                >
+
+                    Apply Coupon
+
+                </button>
+
+
+                <!-- RESULT -->
+
+                <div
+                    id="result"
+                    class="result"
+                ></div>
+
+
+                <!-- RESET -->
+
+                <button
+                    class="reset-btn"
+                    onclick="resetForm()"
+                >
+
+                    Reset
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+
+        /* ==============================
+           COUPON CODE
+        ============================== */
+
+        const COUPON_CODE =
+            "NGEARLY2026";
+
+
+        /* ==============================
+           PRICES
+        ============================== */
+
+        const prices = {
+
+            online: {
+
+                normal: 10000,
+
+                coupon: 5000
+
+            },
+
+
+            offline: {
+
+                normal: 15000,
+
+                coupon: 8000
+
+            }
+
+        };
+
+
+        /* ==============================
+           UPDATE PREVIEW
+        ============================== */
+
+        function updateCouponPreview() {
+
+
+            const mode =
+                document
+                    .getElementById("mode")
+                    .value;
+
+
+            /*
+                The coupon card already
+                displays both prices.
+
+                This function is kept here
+                for future dynamic updates.
+            */
+
+
+            console.log(
+                "Selected mode:",
+                mode
+            );
+
+        }
+
+
+        /* ==============================
+           MODE CHANGE
+        ============================== */
+
+        document
+            .getElementById("mode")
+            .addEventListener(
+                "change",
+                function () {
+
+
+                    updateCouponPreview();
+
+
+                    document
+                        .getElementById("result")
+                        .className =
+                        "result";
+
+
+                    document
+                        .getElementById("result")
+                        .innerHTML =
+                        "";
+
+                }
+            );
+
+
+        /* ==============================
+           CURRENCY
+        ============================== */
+
+        function formatCurrency(amount) {
+
+            return "₹" +
+                amount.toLocaleString("en-IN");
+
+        }
+
+
+        /* ==============================
+           VALIDATE COUPON
+        ============================== */
+
+        function validateCoupon() {
+
+
+            const counsellor =
+                document
+                    .getElementById("counsellor")
+                    .value
+                    .trim();
+
+
+            const mode =
+                document
+                    .getElementById("mode")
+                    .value;
+
+
+            const coupon =
+                document
+                    .getElementById("couponInput")
+                    .value
+                    .trim()
+                    .toUpperCase();
+
+
+            const result =
+                document
+                    .getElementById("result");
+
+
+            /* COUNSELLOR */
+
+            if (!counsellor) {
+
+
+                showError(
+                    "Please enter the Academic Counsellor name."
+                );
+
+
+                return;
+
+            }
+
+
+            /* COUPON EMPTY */
+
+            if (!coupon) {
+
+
+                showError(
+                    "Please enter the coupon code."
+                );
+
+
+                return;
+
+            }
+
+
+            /* WRONG COUPON */
+
+            if (coupon !== COUPON_CODE) {
+
+
+                showError(
+                    "Invalid coupon code. Please enter a valid coupon."
+                );
+
+
+                return;
+
+            }
+
+
+            /* ==========================
+               CORRECT COUPON
+            =========================== */
+
+
+            const normalPrice =
+                prices[mode].normal;
+
+
+            const finalPrice =
+                prices[mode].coupon;
+
+
+            const savings =
+                normalPrice -
+                finalPrice;
+
+
+            result.className =
+                "result success";
+
+
+            result.innerHTML = `
+
+                <h3>
+                    ✓ Coupon Applied Successfully!
+                </h3>
+
+
+                <div class="result-row">
+
+                    <span>
+                        Academic Counsellor
+                    </span>
+
+                    <strong>
+                        ${escapeHTML(counsellor)}
+                    </strong>
+
+                </div>
+
+
+                <div class="result-row">
+
+                    <span>
+                        Mode
+                    </span>
+
+                    <strong>
+                        ${mode.toUpperCase()}
+                    </strong>
+
+                </div>
+
+
+                <div class="result-row">
+
+                    <span>
+                        Coupon
+                    </span>
+
+                    <strong>
+                        ${COUPON_CODE}
+                    </strong>
+
+                </div>
+
+
+                <div class="result-row">
+
+                    <span>
+                        Normal Price
+                    </span>
+
+                    <span class="normal-price">
+
+                        ${formatCurrency(normalPrice)}
+
+                    </span>
+
+                </div>
+
+
+                <div class="result-row">
+
+                    <span>
+                        Early Bird Price
+                    </span>
+
+                    <span class="final-price">
+
+                        ${formatCurrency(finalPrice)}
+
+                    </span>
+
+                </div>
+
+
+                <div class="result-row">
+
+                    <span>
+                        You Save
+                    </span>
+
+                    <span class="saving">
+
+                        ${formatCurrency(savings)}
+
+                    </span>
+
+                </div>
+
+            `;
+
+
+            /* PRICE ANIMATION */
+
+            animatePrice(finalPrice);
+
+
+            /* CONFETTI */
+
+            createConfetti();
+
+        }
+
+
+        /* ==============================
+           ERROR
+        ============================== */
+
+        function showError(message) {
+
+
+            const result =
+                document
+                    .getElementById("result");
+
+
+            result.className =
+                "result error";
+
+
+            result.innerHTML = `
+
+                <strong>
+
+                    ⚠ ${message}
+
+                </strong>
+
+            `;
+
+        }
+
+
+        /* ==============================
+           PRICE ANIMATION
+        ============================== */
+
+        function animatePrice(targetPrice) {
+
+
+            /*
+                Animation is not applied to
+                the two fixed prices because
+                both offers must remain visible.
+            */
+
+
+            console.log(
+                "Applied price:",
+                targetPrice
+            );
+
+        }
+
+
+        /* ==============================
+           CONFETTI
+        ============================== */
+
+        function createConfetti() {
+
+
+            const count = 70;
+
+
+            for (
+                let i = 0;
+                i < count;
+                i++
+            ) {
+
+
+                const confetti =
+                    document
+                        .createElement("div");
+
+
+                confetti.className =
+                    "confetti";
+
+
+                confetti.style.left =
+                    Math.random() *
+                    100 +
+                    "vw";
+
+
+                confetti.style.animationDelay =
+                    Math.random() *
+                    0.8 +
+                    "s";
+
+
+                confetti.style.background =
+                    Math.random() > 0.5
+                        ? "#72d83c"
+                        : "#123f32";
+
+
+                confetti.style.transform =
+                    `rotate(
+                        ${Math.random() * 360}deg
+                    )`;
+
+
+                document.body.appendChild(
+                    confetti
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        confetti.remove();
+
+                    },
+                    4000
+                );
+
+            }
+
+        }
+
+
+        /* ==============================
+           RESET
+        ============================== */
+
+        function resetForm() {
+
+
+            document
+                .getElementById("counsellor")
+                .value =
+                "";
+
+
+            document
+                .getElementById("couponInput")
+                .value =
+                "";
+
+
+            document
+                .getElementById("mode")
+                .value =
+                "online";
+
+
+            const result =
+                document
+                    .getElementById("result");
+
+
+            result.className =
+                "result";
+
+
+            result.innerHTML =
+                "";
+
+
+            updateCouponPreview();
+
+        }
+
+
+        /* ==============================
+           ESCAPE HTML
+        ============================== */
+
+        function escapeHTML(value) {
+
+
+            const div =
+                document
+                    .createElement("div");
+
+
+            div.textContent =
+                value;
+
+
+            return div.innerHTML;
+
+        }
+
+
+        /* INITIAL */
+
+        updateCouponPreview();
+
+
+    </script>
+
+</body>
+
+</html>
