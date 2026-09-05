@@ -1380,16 +1380,20 @@
                     </div>
 
 
+                    <!-- UPDATED COUPON CODE -->
+
                     <div class="coupon-code">
 
-                        CODE - NGEARLY2026
+                        CODE - EDUSEP26
 
                     </div>
 
 
+                    <!-- UPDATED VALID DATE -->
+
                     <div class="coupon-valid">
 
-                        VALID UNTIL 10 SEPTEMBER 2026
+                        VALID UNTIL 30 SEPTEMBER 2026
 
                     </div>
 
@@ -1541,7 +1545,7 @@
                     <input
                         type="text"
                         id="couponInput"
-                        placeholder="Enter NGEARLY2026"
+                        placeholder="Enter coupon code"
                         autocomplete="off"
                     >
 
@@ -1595,7 +1599,17 @@
         ========================================= */
 
         const COUPON_CODE =
-            "NGEARLY2026";
+            "EDUSEP26";
+
+
+        /* =========================================
+           VALID UNTIL
+           
+           30 September 2026
+        ========================================= */
+
+        const VALID_UNTIL =
+            new Date("2026-09-30T23:59:59");
 
 
         /* =========================================
@@ -1692,12 +1706,28 @@
             }
 
 
-            /* INVALID */
+            /* INVALID COUPON */
 
             if (coupon !== COUPON_CODE) {
 
                 showError(
-                    "Invalid coupon code. Please enter NGEARLY2026."
+                    "Invalid coupon code. Please enter the correct coupon code."
+                );
+
+                return;
+            }
+
+
+            /* DATE VALIDATION */
+
+            const today =
+                new Date();
+
+
+            if (today > VALID_UNTIL) {
+
+                showError(
+                    "Sorry, this Early Bird coupon has expired. The offer was valid until 30 September 2026."
                 );
 
                 return;
