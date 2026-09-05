@@ -4,15 +4,22 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Early Bird Coupon - Nextgen Edutantr</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Early Bird Coupon - Nextgen Edutantr
+    </title>
+
 
     <style>
 
-        /* ==============================
+        /* =========================================
            GLOBAL
-        ============================== */
+        ========================================= */
 
         * {
             margin: 0;
@@ -20,25 +27,26 @@
             box-sizing: border-box;
         }
 
+
         body {
 
             font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
+                "Times New Roman",
+                Times,
+                serif;
 
             min-height: 100vh;
 
             background:
                 radial-gradient(
                     circle at top left,
-                    #dff8d7,
+                    #e5f8dc,
                     transparent 35%
                 ),
 
                 radial-gradient(
                     circle at bottom right,
-                    #b9edaa,
+                    #bcebab,
                     transparent 35%
                 ),
 
@@ -53,12 +61,14 @@
             padding: 30px 15px;
 
             overflow-x: hidden;
+
+            color: #173f34;
         }
 
 
-        /* ==============================
+        /* =========================================
            BACKGROUND CIRCLES
-        ============================== */
+        ========================================= */
 
         .circle {
 
@@ -68,7 +78,7 @@
 
             filter: blur(3px);
 
-            opacity: 0.22;
+            opacity: 0.20;
 
             z-index: -1;
 
@@ -83,7 +93,7 @@
 
             height: 180px;
 
-            background: #72d83c;
+            background: #78d94b;
 
             top: 5%;
 
@@ -124,21 +134,21 @@
         }
 
 
-        /* ==============================
+        /* =========================================
            CONTAINER
-        ============================== */
+        ========================================= */
 
         .container {
 
             width: 100%;
 
-            max-width: 1050px;
+            max-width: 1100px;
         }
 
 
-        /* ==============================
+        /* =========================================
            HEADER
-        ============================== */
+        ========================================= */
 
         .header {
 
@@ -153,19 +163,19 @@
 
         .header-logo {
 
-            width: 85px;
+            width: 90px;
 
-            height: 85px;
+            height: 90px;
 
             object-fit: contain;
-
-            margin-bottom: 10px;
-
-            border-radius: 50%;
 
             background: white;
 
             padding: 5px;
+
+            border-radius: 50%;
+
+            margin-bottom: 10px;
 
             box-shadow:
                 0 8px 25px
@@ -175,19 +185,35 @@
 
         .header h1 {
 
-            font-size: 34px;
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size: 36px;
+
+            font-weight: 900;
 
             color: #123f32;
 
             margin-bottom: 8px;
+
+            letter-spacing: 0.5px;
         }
 
 
         .header p {
 
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
             color: #527064;
 
-            font-size: 15px;
+            font-size: 17px;
+
+            font-style: italic;
         }
 
 
@@ -211,9 +237,9 @@
         }
 
 
-        /* ==============================
+        /* =========================================
            MAIN CARD
-        ============================== */
+        ========================================= */
 
         .main-card {
 
@@ -240,7 +266,7 @@
 
             border:
                 1px solid
-                rgba(50, 130, 90, 0.10);
+                rgba(50, 130, 90, 0.12);
         }
 
 
@@ -264,9 +290,9 @@
         }
 
 
-        /* ==============================
-           COUPON CARD
-        ============================== */
+        /* =========================================
+           COUPON
+        ========================================= */
 
         .coupon {
 
@@ -279,13 +305,13 @@
                     #287052
                 );
 
-            min-height: 380px;
+            min-height: 420px;
 
             border:
                 7px solid
-                #0d2d24;
+                #0c2b22;
 
-            border-radius: 12px;
+            border-radius: 14px;
 
             overflow: hidden;
 
@@ -301,7 +327,7 @@
         }
 
 
-        /* Decorative glow */
+        /* Decorative circle */
 
         .coupon::before {
 
@@ -309,15 +335,16 @@
 
             position: absolute;
 
-            width: 240px;
+            width: 250px;
 
-            height: 240px;
+            height: 250px;
 
-            background: #8df246;
+            background:
+                #8df246;
 
             border-radius: 50%;
 
-            top: -120px;
+            top: -125px;
 
             right: -100px;
 
@@ -325,59 +352,46 @@
         }
 
 
-        /* Left ticket hole */
+        /* Ticket holes */
 
-        .coupon .left-hole {
+        .left-hole,
+        .right-hole {
 
             position: absolute;
 
-            width: 30px;
+            width: 32px;
 
-            height: 30px;
+            height: 32px;
 
-            background: white;
+            background:
+                #f4f8f4;
 
             border-radius: 50%;
 
             top: 50%;
 
-            left: -19px;
-
             transform:
                 translateY(-50%);
 
-            z-index: 5;
+            z-index: 10;
         }
 
 
-        /* Right ticket hole */
+        .left-hole {
 
-        .coupon .right-hole {
-
-            position: absolute;
-
-            width: 30px;
-
-            height: 30px;
-
-            background: white;
-
-            border-radius: 50%;
-
-            top: 50%;
-
-            right: -19px;
-
-            transform:
-                translateY(-50%);
-
-            z-index: 5;
+            left: -21px;
         }
 
 
-        /* ==============================
+        .right-hole {
+
+            right: -21px;
+        }
+
+
+        /* =========================================
            COUPON TOP
-        ============================== */
+        ========================================= */
 
         .coupon-top {
 
@@ -394,9 +408,9 @@
 
         .coupon-logo {
 
-            width: 65px;
+            width: 68px;
 
-            height: 65px;
+            height: 68px;
 
             object-fit: contain;
 
@@ -406,7 +420,7 @@
 
             padding: 5px;
 
-            margin-bottom: 10px;
+            margin-bottom: 9px;
 
             box-shadow:
                 0 5px 15px
@@ -416,21 +430,37 @@
 
         .company {
 
-            font-size: 20px;
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size: 21px;
 
             font-weight: 700;
 
-            letter-spacing: 1px;
+            letter-spacing: 0.7px;
         }
 
+
+        /* =========================================
+           ALMANDO-STYLE HEADLINE
+        ========================================= */
 
         .coupon-title {
 
             margin-top: 15px;
 
-            font-size: 40px;
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 42px;
 
             font-weight: 900;
+
+            font-style: italic;
 
             color: #8df246;
 
@@ -442,11 +472,33 @@
         }
 
 
+        .coupon-subtitle {
+
+            margin-top: 5px;
+
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size: 17px;
+
+            color: #e0f8d5;
+
+            font-style: italic;
+        }
+
+
         .coupon-code {
 
-            margin-top: 15px;
+            margin-top: 16px;
 
-            font-size: 16px;
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size: 17px;
 
             font-weight: 700;
 
@@ -460,7 +512,12 @@
 
             margin-top: 12px;
 
-            font-size: 14px;
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size: 15px;
 
             font-weight: 700;
 
@@ -468,9 +525,9 @@
         }
 
 
-        /* ==============================
+        /* =========================================
            PRICE SECTION
-        ============================== */
+        ========================================= */
 
         .coupon-bottom {
 
@@ -497,7 +554,7 @@
 
             justify-content: center;
 
-            gap: 25px;
+            gap: 28px;
 
             width: 100%;
         }
@@ -519,7 +576,12 @@
 
         .mode-label {
 
-            font-size: 13px;
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size: 14px;
 
             font-weight: 900;
 
@@ -531,7 +593,12 @@
 
         .price {
 
-            font-size: 32px;
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size: 34px;
 
             font-weight: 900;
 
@@ -541,13 +608,18 @@
 
         .offer-text {
 
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
             font-size: 11px;
 
             font-weight: 700;
 
             color: #c9f8ba;
 
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
         }
 
 
@@ -555,16 +627,16 @@
 
             width: 2px;
 
-            height: 65px;
+            height: 70px;
 
             background:
                 rgba(255, 255, 255, 0.4);
         }
 
 
-        /* ==============================
-           FORM SECTION
-        ============================== */
+        /* =========================================
+           FORM
+        ========================================= */
 
         .form-section {
 
@@ -574,11 +646,49 @@
 
         .form-section h2 {
 
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 28px;
+
+            font-weight: 900;
+
+            font-style: italic;
+
             color: #123f32;
 
             margin-bottom: 20px;
+        }
 
-            font-size: 25px;
+
+        .registration-note {
+
+            background:
+                #eef9e9;
+
+            border:
+                1px solid
+                #c6e7ba;
+
+            border-radius:
+                10px;
+
+            padding:
+                12px 14px;
+
+            margin-bottom:
+                20px;
+
+            color:
+                #315b42;
+
+            font-size:
+                14px;
+
+            line-height:
+                1.5;
         }
 
 
@@ -594,7 +704,7 @@
 
             margin-bottom: 7px;
 
-            font-size: 14px;
+            font-size: 15px;
 
             font-weight: 700;
 
@@ -614,9 +724,16 @@
                 2px solid
                 #d5e2db;
 
-            border-radius: 10px;
+            border-radius:
+                10px;
 
-            font-size: 15px;
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size:
+                16px;
 
             outline: none;
 
@@ -638,13 +755,14 @@
                 0 0 0 4px
                 rgba(91, 201, 52, 0.14);
 
-            background: white;
+            background:
+                white;
         }
 
 
-        /* ==============================
-           APPLY BUTTON
-        ============================== */
+        /* =========================================
+           APPLY COUPON BUTTON
+        ========================================= */
 
         .apply-btn {
 
@@ -665,7 +783,12 @@
 
             color: white;
 
-            font-size: 16px;
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size: 17px;
 
             font-weight: 800;
 
@@ -698,9 +821,9 @@
         }
 
 
-        /* ==============================
+        /* =========================================
            RESULT
-        ============================== */
+        ========================================= */
 
         .result {
 
@@ -741,63 +864,23 @@
                 1px solid
                 #e3a0a0;
 
-            color: #a00000;
+            color:
+                #a00000;
 
             animation:
                 shake 0.4s ease;
         }
 
 
-        @keyframes resultPop {
-
-            0% {
-
-                transform:
-                    scale(0.85);
-
-                opacity: 0;
-            }
-
-            70% {
-
-                transform:
-                    scale(1.05);
-            }
-
-            100% {
-
-                transform:
-                    scale(1);
-
-                opacity: 1;
-            }
-        }
-
-
-        @keyframes shake {
-
-            0%,
-            100% {
-
-                transform:
-                    translateX(0);
-            }
-
-            25% {
-
-                transform:
-                    translateX(-8px);
-            }
-
-            75% {
-
-                transform:
-                    translateX(8px);
-            }
-        }
-
-
         .result h3 {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size:
+                21px;
 
             color:
                 #28752a;
@@ -817,19 +900,21 @@
             align-items:
                 center;
 
-            gap: 15px;
+            gap:
+                15px;
 
             margin:
-                8px 0;
+                9px 0;
 
             font-size:
-                14px;
+                15px;
         }
 
 
         .normal-price {
 
-            color: #777;
+            color:
+                #777;
 
             text-decoration:
                 line-through;
@@ -842,7 +927,7 @@
                 #176044;
 
             font-size:
-                25px;
+                26px;
 
             font-weight:
                 900;
@@ -859,9 +944,71 @@
         }
 
 
-        /* ==============================
-           RESET BUTTON
-        ============================== */
+        /* =========================================
+           REGISTER BUTTON
+        ========================================= */
+
+        .register-btn {
+
+            width: 100%;
+
+            margin-top: 16px;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6dcc38,
+                    #3e9e27
+                );
+
+            color: white;
+
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size: 18px;
+
+            font-weight: 900;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+            display: block;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 20px
+                rgba(65, 150, 40, 0.25);
+
+            transition:
+                0.3s;
+        }
+
+
+        .register-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(65, 150, 40, 0.35);
+        }
+
+
+        /* =========================================
+           RESET
+        ========================================= */
 
         .reset-btn {
 
@@ -890,6 +1037,14 @@
             cursor:
                 pointer;
 
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size:
+                15px;
+
             font-weight:
                 700;
 
@@ -908,9 +1063,9 @@
         }
 
 
-        /* ==============================
+        /* =========================================
            CONFETTI
-        ============================== */
+        ========================================= */
 
         .confetti {
 
@@ -928,9 +1083,6 @@
 
             z-index:
                 999;
-
-            background:
-                #72d83c;
 
             animation:
                 fall 3s linear forwards;
@@ -961,9 +1113,64 @@
         }
 
 
-        /* ==============================
-           RESPONSIVE
-        ============================== */
+        /* =========================================
+           ANIMATIONS
+        ========================================= */
+
+        @keyframes resultPop {
+
+            0% {
+
+                transform:
+                    scale(0.85);
+
+                opacity:
+                    0;
+            }
+
+            70% {
+
+                transform:
+                    scale(1.05);
+            }
+
+            100% {
+
+                transform:
+                    scale(1);
+
+                opacity:
+                    1;
+            }
+        }
+
+
+        @keyframes shake {
+
+            0%,
+            100% {
+
+                transform:
+                    translateX(0);
+            }
+
+            25% {
+
+                transform:
+                    translateX(-8px);
+            }
+
+            75% {
+
+                transform:
+                    translateX(8px);
+            }
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
 
         @media (max-width: 800px) {
 
@@ -1002,10 +1209,10 @@
             .header-logo {
 
                 width:
-                    65px;
+                    70px;
 
                 height:
-                    65px;
+                    70px;
             }
 
 
@@ -1019,7 +1226,7 @@
             .coupon {
 
                 min-height:
-                    360px;
+                    390px;
             }
 
 
@@ -1033,14 +1240,14 @@
             .company {
 
                 font-size:
-                    16px;
+                    17px;
             }
 
 
             .coupon-code {
 
                 font-size:
-                    12px;
+                    13px;
             }
 
 
@@ -1097,11 +1304,12 @@
     <div class="container">
 
 
-        <!-- ==========================
+        <!-- ======================================
              HEADER
-        =========================== -->
+        ======================================= -->
 
         <div class="header">
+
 
             <img
                 class="header-logo"
@@ -1109,32 +1317,32 @@
                 alt="Nextgen Edutantr Logo"
             >
 
+
             <h1>
                 Nextgen Edutantr Pvt Ltd
             </h1>
 
+
             <p>
-                Early Bird Special Coupon Validation
+                Early Bird Special Coupon Registration
             </p>
 
         </div>
 
 
-        <!-- ==========================
+        <!-- ======================================
              MAIN CARD
-        =========================== -->
+        ======================================= -->
 
         <div class="main-card">
 
 
-            <!-- ==========================
+            <!-- ==================================
                  COUPON
-            =========================== -->
+            =================================== -->
 
             <div class="coupon">
 
-
-                <!-- Ticket holes -->
 
                 <div class="left-hole"></div>
 
@@ -1165,6 +1373,13 @@
                     </div>
 
 
+                    <div class="coupon-subtitle">
+
+                        Exclusive Registration Offer
+
+                    </div>
+
+
                     <div class="coupon-code">
 
                         CODE - NGEARLY2026
@@ -1181,9 +1396,9 @@
                 </div>
 
 
-                <!-- ==========================
-                     BOTH PRICES
-                =========================== -->
+                <!-- ==================================
+                     PRICES
+                =================================== -->
 
                 <div class="coupon-bottom">
 
@@ -1196,27 +1411,19 @@
                         <div class="price-box">
 
                             <span class="mode-label">
-
                                 ONLINE
-
                             </span>
 
                             <span class="price">
-
                                 ₹5,000
-
                             </span>
 
                             <span class="offer-text">
-
                                 EARLY BIRD PRICE
-
                             </span>
 
                         </div>
 
-
-                        <!-- DIVIDER -->
 
                         <div class="divider"></div>
 
@@ -1226,21 +1433,15 @@
                         <div class="price-box">
 
                             <span class="mode-label">
-
                                 OFFLINE
-
                             </span>
 
                             <span class="price">
-
                                 ₹8,000
-
                             </span>
 
                             <span class="offer-text">
-
                                 EARLY BIRD PRICE
-
                             </span>
 
                         </div>
@@ -1253,18 +1454,26 @@
             </div>
 
 
-            <!-- ==========================
-                 VALIDATION FORM
-            =========================== -->
+            <!-- ==================================
+                 VALIDATION / REGISTRATION
+            =================================== -->
 
             <div class="form-section">
 
 
                 <h2>
-
-                    Validate Coupon
-
+                    Validate & Register
                 </h2>
+
+
+                <div class="registration-note">
+
+                    Enter your Academic Counsellor name,
+                    select your preferred mode and apply
+                    the Early Bird coupon to continue
+                    with registration.
+
+                </div>
 
 
                 <!-- COUNSELLOR -->
@@ -1293,7 +1502,7 @@
 
                     <label for="mode">
 
-                        Select Mode
+                        Select Training Mode
 
                     </label>
 
@@ -1332,7 +1541,7 @@
                     <input
                         type="text"
                         id="couponInput"
-                        placeholder="Enter coupon code"
+                        placeholder="Enter NGEARLY2026"
                         autocomplete="off"
                     >
 
@@ -1381,17 +1590,17 @@
     <script>
 
 
-        /* ==============================
-           COUPON CODE
-        ============================== */
+        /* =========================================
+           COUPON
+        ========================================= */
 
         const COUPON_CODE =
             "NGEARLY2026";
 
 
-        /* ==============================
+        /* =========================================
            PRICES
-        ============================== */
+        ========================================= */
 
         const prices = {
 
@@ -1402,7 +1611,6 @@
                 coupon: 5000
 
             },
-
 
             offline: {
 
@@ -1415,68 +1623,9 @@
         };
 
 
-        /* ==============================
-           UPDATE PREVIEW
-        ============================== */
-
-        function updateCouponPreview() {
-
-
-            const mode =
-                document
-                    .getElementById("mode")
-                    .value;
-
-
-            /*
-                The coupon card already
-                displays both prices.
-
-                This function is kept here
-                for future dynamic updates.
-            */
-
-
-            console.log(
-                "Selected mode:",
-                mode
-            );
-
-        }
-
-
-        /* ==============================
-           MODE CHANGE
-        ============================== */
-
-        document
-            .getElementById("mode")
-            .addEventListener(
-                "change",
-                function () {
-
-
-                    updateCouponPreview();
-
-
-                    document
-                        .getElementById("result")
-                        .className =
-                        "result";
-
-
-                    document
-                        .getElementById("result")
-                        .innerHTML =
-                        "";
-
-                }
-            );
-
-
-        /* ==============================
+        /* =========================================
            CURRENCY
-        ============================== */
+        ========================================= */
 
         function formatCurrency(amount) {
 
@@ -1486,9 +1635,9 @@
         }
 
 
-        /* ==============================
-           VALIDATE COUPON
-        ============================== */
+        /* =========================================
+           VALIDATE
+        ========================================= */
 
         function validateCoupon() {
 
@@ -1523,51 +1672,39 @@
 
             if (!counsellor) {
 
-
                 showError(
                     "Please enter the Academic Counsellor name."
                 );
 
-
                 return;
-
             }
 
 
-            /* COUPON EMPTY */
+            /* COUPON */
 
             if (!coupon) {
-
 
                 showError(
                     "Please enter the coupon code."
                 );
 
-
                 return;
-
             }
 
 
-            /* WRONG COUPON */
+            /* INVALID */
 
             if (coupon !== COUPON_CODE) {
 
-
                 showError(
-                    "Invalid coupon code. Please enter a valid coupon."
+                    "Invalid coupon code. Please enter NGEARLY2026."
                 );
 
-
                 return;
-
             }
 
 
-            /* ==========================
-               CORRECT COUPON
-            =========================== */
-
+            /* PRICES */
 
             const normalPrice =
                 prices[mode].normal;
@@ -1581,6 +1718,8 @@
                 normalPrice -
                 finalPrice;
 
+
+            /* SUCCESS */
 
             result.className =
                 "result success";
@@ -1609,7 +1748,7 @@
                 <div class="result-row">
 
                     <span>
-                        Mode
+                        Training Mode
                     </span>
 
                     <strong>
@@ -1676,12 +1815,21 @@
 
                 </div>
 
+
+                <!-- RAZORPAY REGISTRATION -->
+
+                <a
+                    href="https://pages.razorpay.com/pl_TRYNqSsf77tJlX/view"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="register-btn"
+                >
+
+                    Proceed to Registration & Payment →
+
+                </a>
+
             `;
-
-
-            /* PRICE ANIMATION */
-
-            animatePrice(finalPrice);
 
 
             /* CONFETTI */
@@ -1691,9 +1839,9 @@
         }
 
 
-        /* ==============================
+        /* =========================================
            ERROR
-        ============================== */
+        ========================================= */
 
         function showError(message) {
 
@@ -1720,31 +1868,9 @@
         }
 
 
-        /* ==============================
-           PRICE ANIMATION
-        ============================== */
-
-        function animatePrice(targetPrice) {
-
-
-            /*
-                Animation is not applied to
-                the two fixed prices because
-                both offers must remain visible.
-            */
-
-
-            console.log(
-                "Applied price:",
-                targetPrice
-            );
-
-        }
-
-
-        /* ==============================
+        /* =========================================
            CONFETTI
-        ============================== */
+        ========================================= */
 
         function createConfetti() {
 
@@ -1811,9 +1937,9 @@
         }
 
 
-        /* ==============================
+        /* =========================================
            RESET
-        ============================== */
+        ========================================= */
 
         function resetForm() {
 
@@ -1848,15 +1974,12 @@
             result.innerHTML =
                 "";
 
-
-            updateCouponPreview();
-
         }
 
 
-        /* ==============================
-           ESCAPE HTML
-        ============================== */
+        /* =========================================
+           SECURITY
+        ========================================= */
 
         function escapeHTML(value) {
 
@@ -1873,12 +1996,6 @@
             return div.innerHTML;
 
         }
-
-
-        /* INITIAL */
-
-        updateCouponPreview();
-
 
     </script>
 
