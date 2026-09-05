@@ -1,1129 +1,556 @@
-/* =========================================
-   EXTRA PREMIUM ANIMATIONS
-========================================= */
+/* =========================================================
+   EXTRA TRANSITION + MOVABLE OBJECT ANIMATIONS
+   ========================================================= */
 
-
-/* -----------------------------------------
-   ANIMATED BACKGROUND
------------------------------------------ */
-
+/* Smooth page loading */
 body {
-    background-size: 200% 200%;
-
-    animation:
-        backgroundMove 12s ease infinite;
+    animation: pageEnter 1.2s ease forwards;
+    overflow-x: hidden;
 }
 
-@keyframes backgroundMove {
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
+
+/* ---------------------------------------------------------
+   MOVING BACKGROUND OBJECTS
+   --------------------------------------------------------- */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::before {
+    width: 180px;
+    height: 180px;
+    top: 8%;
+    left: -60px;
+    background: rgba(76, 175, 80, 0.15);
+    filter: blur(2px);
+    animation: moveCircleOne 12s ease-in-out infinite alternate;
+}
+
+body::after {
+    width: 230px;
+    height: 230px;
+    bottom: 5%;
+    right: -80px;
+    background: rgba(46, 125, 50, 0.12);
+    filter: blur(3px);
+    animation: moveCircleTwo 15s ease-in-out infinite alternate;
+}
+
+@keyframes moveCircleOne {
     0% {
-        background-position: 0% 50%;
+        transform: translate(0, 0) scale(1);
     }
 
     50% {
-        background-position: 100% 50%;
+        transform: translate(120px, 80px) scale(1.15);
     }
 
     100% {
-        background-position: 0% 50%;
+        transform: translate(30px, 180px) scale(0.9);
     }
 }
 
-
-/* -----------------------------------------
-   FLOATING BACKGROUND CIRCLES
------------------------------------------ */
-
-.circle.one {
-
-    animation:
-        floatBig 7s ease-in-out infinite,
-        glowCircle 3s ease-in-out infinite;
-}
-
-.circle.two {
-
-    animation:
-        floatBigReverse 9s ease-in-out infinite,
-        glowCircle 4s ease-in-out infinite;
-}
-
-
-@keyframes floatBig {
-
-    0%,
-    100% {
-        transform:
-            translate(0, 0)
-            scale(1);
+@keyframes moveCircleTwo {
+    0% {
+        transform: translate(0, 0) scale(1);
     }
 
     50% {
-        transform:
-            translate(30px, -35px)
-            scale(1.12);
+        transform: translate(-120px, -100px) scale(1.2);
+    }
+
+    100% {
+        transform: translate(-30px, -180px) scale(0.85);
     }
 }
 
 
-@keyframes floatBigReverse {
+/* ---------------------------------------------------------
+   FLOATING SMALL OBJECTS
+   --------------------------------------------------------- */
 
-    0%,
-    100% {
-        transform:
-            translate(0, 0)
-            scale(1);
+.floating-object {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(46, 125, 50, 0.35);
+    pointer-events: none;
+    z-index: 0;
+    animation: floatingObject 8s ease-in-out infinite;
+}
+
+.floating-object:nth-child(1) {
+    top: 15%;
+    left: 8%;
+    animation-delay: 0s;
+}
+
+.floating-object:nth-child(2) {
+    top: 30%;
+    right: 10%;
+    width: 18px;
+    height: 18px;
+    animation-delay: 2s;
+}
+
+.floating-object:nth-child(3) {
+    bottom: 20%;
+    left: 12%;
+    width: 8px;
+    height: 8px;
+    animation-delay: 4s;
+}
+
+.floating-object:nth-child(4) {
+    bottom: 12%;
+    right: 15%;
+    width: 14px;
+    height: 14px;
+    animation-delay: 1s;
+}
+
+@keyframes floatingObject {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.4;
+    }
+
+    25% {
+        transform: translate(30px, -40px) rotate(90deg);
+        opacity: 0.8;
     }
 
     50% {
-        transform:
-            translate(-30px, 30px)
-            scale(1.1);
+        transform: translate(-20px, -80px) rotate(180deg);
+        opacity: 0.5;
     }
-}
 
+    75% {
+        transform: translate(-50px, -30px) rotate(270deg);
+        opacity: 0.8;
+    }
 
-@keyframes glowCircle {
-
-    0%,
     100% {
-        opacity: 0.16;
-    }
-
-    50% {
-        opacity: 0.30;
+        transform: translate(0, 0) rotate(360deg);
+        opacity: 0.4;
     }
 }
 
 
-/* -----------------------------------------
-   HEADER LOGO FLOAT
------------------------------------------ */
-
-.header-logo {
-
-    animation:
-        logoFloat 4s ease-in-out infinite;
-
-    transition:
-        transform 0.4s ease,
-        box-shadow 0.4s ease;
-}
-
-
-.header-logo:hover {
-
-    transform:
-        scale(1.12)
-        rotate(5deg);
-
-    box-shadow:
-        0 12px 35px
-        rgba(91, 201, 52, 0.45);
-}
-
-
-@keyframes logoFloat {
-
-    0%,
-    100% {
-        transform:
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translateY(-8px);
-    }
-}
-
-
-/* -----------------------------------------
-   MAIN CARD FLOAT
------------------------------------------ */
+/* ---------------------------------------------------------
+   MAIN CARD SMOOTH FLOAT
+   --------------------------------------------------------- */
 
 .main-card {
-
     animation:
-        cardEntrance 1s ease,
-        cardFloat 6s ease-in-out infinite;
-
-    transform-origin:
-        center;
-}
-
-
-@keyframes cardEntrance {
-
-    0% {
-        opacity: 0;
-        transform:
-            translateY(60px)
-            scale(0.94);
-    }
-
-    70% {
-        opacity: 1;
-        transform:
-            translateY(-5px)
-            scale(1.01);
-    }
-
-    100% {
-        opacity: 1;
-        transform:
-            translateY(0)
-            scale(1);
-    }
-}
-
-
-@keyframes cardFloat {
-
-    0%,
-    100% {
-        transform:
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translateY(-5px);
-    }
-}
-
-
-/* -----------------------------------------
-   COUPON 3D EFFECT
------------------------------------------ */
-
-.coupon {
-
+        fadeUp 1s ease forwards,
+        cardFloat 6s ease-in-out 1.5s infinite;
     transition:
         transform 0.5s ease,
         box-shadow 0.5s ease;
+}
 
-    transform-style:
-        preserve-3d;
+.main-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 25px 60px rgba(0, 80, 30, 0.18);
+}
+
+@keyframes cardFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 
-.coupon:hover {
+/* ---------------------------------------------------------
+   COUPON CARD 3D MOVEMENT
+   --------------------------------------------------------- */
 
+.coupon-card {
+    transition:
+        transform 0.6s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.6s ease;
+    transform-style: preserve-3d;
+}
+
+.coupon-card:hover {
     transform:
         perspective(1000px)
-        rotateY(-3deg)
-        rotateX(2deg)
-        translateY(-7px);
+        rotateX(3deg)
+        rotateY(-4deg)
+        translateY(-8px)
+        scale(1.015);
 
     box-shadow:
-        0 25px 55px
-        rgba(16, 45, 37, 0.40);
+        0 25px 45px rgba(0, 90, 40, 0.25);
 }
 
 
-/* -----------------------------------------
-   COUPON LIGHT SWEEP
------------------------------------------ */
+/* ---------------------------------------------------------
+   COUPON GLOW MOVEMENT
+   --------------------------------------------------------- */
 
-.coupon::after {
-
+.coupon-card::after {
     content: "";
-
     position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 60%;
+    height: 200%;
 
-    top: -100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.35),
+        transparent
+    );
 
-    left: -80%;
-
-    width: 50%;
-
-    height: 300%;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,0.18),
-            transparent
-        );
-
-    transform:
-        rotate(25deg);
-
-    animation:
-        couponShine 5s ease-in-out infinite;
-
+    transform: rotate(20deg);
+    animation: couponShine 5s ease-in-out infinite;
     pointer-events: none;
-
-    z-index: 5;
 }
-
 
 @keyframes couponShine {
-
     0% {
         left: -100%;
     }
 
-    35% {
-        left: 150%;
-    }
-
+    45%,
     100% {
         left: 150%;
     }
 }
 
 
-/* -----------------------------------------
-   COUPON LOGO
------------------------------------------ */
+/* ---------------------------------------------------------
+   EARLY BIRD TITLE ANIMATION
+   --------------------------------------------------------- */
 
-.coupon-logo {
-
-    animation:
-        couponLogoFloat 3s ease-in-out infinite;
-
-    transition:
-        transform 0.4s ease;
+.coupon-card h1,
+.coupon-card h2 {
+    animation: titleGlow 3s ease-in-out infinite alternate;
 }
 
-
-.coupon-logo:hover {
-
-    transform:
-        scale(1.15)
-        rotate(-8deg);
-}
-
-
-@keyframes couponLogoFloat {
-
-    0%,
-    100% {
-        transform:
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translateY(-6px);
-    }
-}
-
-
-/* -----------------------------------------
-   COMPANY NAME
------------------------------------------ */
-
-.company {
-
-    animation:
-        textReveal 1.2s ease;
-}
-
-
-@keyframes textReveal {
-
+@keyframes titleGlow {
     from {
-        opacity: 0;
-        letter-spacing: 8px;
+        text-shadow: 0 0 0 rgba(255,255,255,0);
     }
 
     to {
-        opacity: 1;
-        letter-spacing: 0.7px;
-    }
-}
-
-
-/* -----------------------------------------
-   EARLY BIRD TITLE
------------------------------------------ */
-
-.coupon-title {
-
-    animation:
-        earlyBirdGlow 2s ease-in-out infinite;
-
-    transform-origin:
-        center;
-}
-
-
-@keyframes earlyBirdGlow {
-
-    0%,
-    100% {
-
-        transform:
-            scale(1);
-
         text-shadow:
-            0 3px 10px
-            rgba(0,0,0,0.25);
-    }
-
-    50% {
-
-        transform:
-            scale(1.05);
-
-        text-shadow:
-            0 0 8px
-            #8df246,
-
-            0 0 20px
-            rgba(141,242,70,0.6),
-
-            0 3px 10px
-            rgba(0,0,0,0.25);
+            0 0 10px rgba(255,255,255,0.5),
+            0 0 20px rgba(255,255,255,0.25);
     }
 }
 
 
-/* -----------------------------------------
-   SUBTITLE
------------------------------------------ */
-
-.coupon-subtitle {
-
-    animation:
-        fadeInUp 1.4s ease;
-}
-
-
-@keyframes fadeInUp {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(15px);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-}
-
-
-/* -----------------------------------------
-   COUPON CODE GLOW
------------------------------------------ */
+/* ---------------------------------------------------------
+   COUPON CODE PULSE
+   --------------------------------------------------------- */
 
 .coupon-code {
-
-    animation:
-        couponCodePulse 2.5s ease-in-out infinite;
-
-    transition:
-        transform 0.3s ease;
+    animation: codePulse 2.8s ease-in-out infinite;
 }
 
-
-.coupon-code:hover {
-
-    transform:
-        scale(1.08);
-}
-
-
-@keyframes couponCodePulse {
-
+@keyframes codePulse {
     0%,
     100% {
-
-        text-shadow:
-            0 0 0
-            rgba(141,242,70,0);
+        transform: scale(1);
     }
 
     50% {
-
-        text-shadow:
-            0 0 8px
-            #8df246,
-
-            0 0 18px
-            rgba(141,242,70,0.6);
+        transform: scale(1.04);
     }
 }
 
 
-/* -----------------------------------------
-   VALID DATE PULSE
------------------------------------------ */
-
-.coupon-valid {
-
-    animation:
-        datePulse 2.5s ease-in-out infinite;
-}
-
-
-@keyframes datePulse {
-
-    0%,
-    100% {
-        opacity: 0.75;
-    }
-
-    50% {
-        opacity: 1;
-    }
-}
-
-
-/* -----------------------------------------
-   PRICE BOXES
------------------------------------------ */
+/* ---------------------------------------------------------
+   PRICE BOX HOVER
+   --------------------------------------------------------- */
 
 .price-box {
-
     transition:
         transform 0.4s ease,
-        filter 0.4s ease;
+        box-shadow 0.4s ease;
 }
-
 
 .price-box:hover {
-
-    transform:
-        translateY(-8px)
-        scale(1.06);
-
-    filter:
-        drop-shadow(
-            0 8px 10px
-            rgba(141,242,70,0.20)
-        );
+    transform: translateY(-6px) scale(1.03);
+    box-shadow:
+        0 12px 25px rgba(0, 90, 40, 0.15);
 }
 
 
-/* -----------------------------------------
-   PRICE ANIMATION
------------------------------------------ */
-
-.price {
-
-    animation:
-        pricePulse 2.2s ease-in-out infinite;
-}
-
-
-@keyframes pricePulse {
-
-    0%,
-    100% {
-
-        transform:
-            scale(1);
-    }
-
-    50% {
-
-        transform:
-            scale(1.08);
-    }
-}
-
-
-/* -----------------------------------------
-   DIVIDER
------------------------------------------ */
-
-.divider {
-
-    animation:
-        dividerGlow 2s ease-in-out infinite;
-}
-
-
-@keyframes dividerGlow {
-
-    0%,
-    100% {
-
-        opacity: 0.4;
-    }
-
-    50% {
-
-        opacity: 1;
-
-        box-shadow:
-            0 0 10px
-            rgba(255,255,255,0.5);
-    }
-}
-
-
-/* -----------------------------------------
-   FORM SECTION
------------------------------------------ */
-
-.form-section {
-
-    animation:
-        formSlide 1.1s ease;
-}
-
-
-@keyframes formSlide {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateX(35px);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateX(0);
-    }
-}
-
-
-/* -----------------------------------------
-   FORM HEADING
------------------------------------------ */
-
-.form-section h2 {
-
-    position:
-        relative;
-
-    display:
-        inline-block;
-}
-
-
-.form-section h2::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-
-    bottom: -6px;
-
-    width: 0;
-
-    height: 3px;
-
-    background:
-        #6dcc38;
-
-    border-radius:
-        10px;
-
-    animation:
-        headingLine 1.5s ease forwards;
-}
-
-
-@keyframes headingLine {
-
-    to {
-        width: 100%;
-    }
-}
-
-
-/* -----------------------------------------
-   REGISTRATION NOTE
------------------------------------------ */
-
-.registration-note {
-
-    animation:
-        noteGlow 3s ease-in-out infinite;
-}
-
-
-@keyframes noteGlow {
-
-    0%,
-    100% {
-
-        box-shadow:
-            0 0 0
-            rgba(91,201,52,0);
-    }
-
-    50% {
-
-        box-shadow:
-            0 5px 20px
-            rgba(91,201,52,0.12);
-    }
-}
-
-
-/* -----------------------------------------
-   INPUT ANIMATION
------------------------------------------ */
-
-.field {
-
-    animation:
-        fieldAppear 0.7s ease both;
-}
-
-
-.field:nth-child(2) {
-    animation-delay:
-        0.15s;
-}
-
-
-.field:nth-child(3) {
-    animation-delay:
-        0.3s;
-}
-
-
-.field:nth-child(4) {
-    animation-delay:
-        0.45s;
-}
-
-
-@keyframes fieldAppear {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(12px);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-}
-
-
-.field input,
-.field select {
-
+/* ---------------------------------------------------------
+   FORM INPUT TRANSITIONS
+   --------------------------------------------------------- */
+
+input,
+select {
     transition:
         all 0.35s ease;
 }
 
+input:hover,
+select:hover {
+    transform: translateY(-2px);
+}
 
-.field input:hover,
-.field select:hover {
-
-    border-color:
-        #82c96d;
-
+input:focus,
+select:focus {
     transform:
-        translateY(-2px);
+        translateY(-3px)
+        scale(1.01);
 
     box-shadow:
-        0 5px 15px
-        rgba(50,130,90,0.10);
+        0 0 0 4px rgba(46, 125, 50, 0.10),
+        0 8px 20px rgba(0, 80, 30, 0.10);
 }
 
 
-.field input:focus,
-.field select:focus {
+/* ---------------------------------------------------------
+   BUTTON MOVEMENT
+   --------------------------------------------------------- */
 
-    transform:
-        scale(1.01);
+button {
+    position: relative;
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-4px) scale(1.02);
+
+    box-shadow:
+        0 12px 25px rgba(0, 80, 30, 0.20);
+}
+
+button:active {
+    transform: translateY(1px) scale(0.98);
 }
 
 
-/* -----------------------------------------
-   APPLY BUTTON SHINE
------------------------------------------ */
+/* Button moving shine */
 
-.apply-btn,
-.register-btn {
-
-    position:
-        relative;
-
-    overflow:
-        hidden;
-
-    transform:
-        translateZ(0);
-}
-
-
-.apply-btn::before,
-.register-btn::before {
-
+button::after {
     content: "";
-
     position: absolute;
 
     top: 0;
-
     left: -120%;
 
     width: 70%;
-
     height: 100%;
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,0.35),
-            transparent
-        );
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.35),
+        transparent
+    );
 
-    transform:
-        skewX(-20deg);
+    transform: skewX(-20deg);
 
-    animation:
-        buttonShine 3.5s ease-in-out infinite;
+    transition: left 0.7s ease;
+}
+
+button:hover::after {
+    left: 150%;
 }
 
 
-@keyframes buttonShine {
-
-    0% {
-        left: -120%;
-    }
-
-    45% {
-        left: 140%;
-    }
-
-    100% {
-        left: 140%;
-    }
-}
-
-
-/* -----------------------------------------
-   BUTTON HOVER
------------------------------------------ */
-
-.apply-btn:hover,
-.register-btn:hover {
-
-    transform:
-        translateY(-4px)
-        scale(1.02);
-}
-
-
-/* -----------------------------------------
+/* ---------------------------------------------------------
    REGISTER BUTTON PULSE
------------------------------------------ */
+   --------------------------------------------------------- */
 
 .register-btn {
-
-    animation:
-        registerPulse 2s ease-in-out infinite;
+    animation: registerPulse 2.5s ease-in-out infinite;
 }
-
 
 @keyframes registerPulse {
-
     0%,
     100% {
-
-        box-shadow:
-            0 8px 20px
-            rgba(65,150,40,0.25);
+        box-shadow: 0 0 0 rgba(46,125,50,0);
     }
 
     50% {
-
         box-shadow:
-            0 10px 30px
-            rgba(65,150,40,0.50);
+            0 0 25px rgba(46,125,50,0.30);
     }
 }
 
 
-/* -----------------------------------------
-   RESULT SUCCESS
------------------------------------------ */
+/* ---------------------------------------------------------
+   FORM FIELD STAGGERED ENTRY
+   --------------------------------------------------------- */
 
-.result.success {
-
-    animation:
-        successEntrance 0.7s
-        cubic-bezier(.17,.67,.35,1.4);
+.form-group {
+    opacity: 0;
+    animation: fieldSlide 0.7s ease forwards;
 }
 
-
-@keyframes successEntrance {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            scale(0.75)
-            translateY(20px);
-    }
-
-    70% {
-
-        transform:
-            scale(1.04);
-    }
-
-    100% {
-
-        opacity: 1;
-
-        transform:
-            scale(1)
-            translateY(0);
-    }
-}
-
-
-/* -----------------------------------------
-   SUCCESS HEADING
------------------------------------------ */
-
-.result.success h3 {
-
-    animation:
-        successGlow 1.5s
-        ease-in-out infinite;
-}
-
-
-@keyframes successGlow {
-
-    0%,
-    100% {
-
-        text-shadow:
-            0 0 0
-            rgba(40,117,42,0);
-    }
-
-    50% {
-
-        text-shadow:
-            0 0 10px
-            rgba(40,117,42,0.4);
-    }
-}
-
-
-/* -----------------------------------------
-   RESULT ROWS
------------------------------------------ */
-
-.result.success .result-row {
-
-    animation:
-        resultRowAppear 0.5s ease both;
-}
-
-
-.result.success .result-row:nth-child(2) {
-    animation-delay: 0.1s;
-}
-
-.result.success .result-row:nth-child(3) {
+.form-group:nth-child(1) {
     animation-delay: 0.2s;
 }
 
-.result.success .result-row:nth-child(4) {
-    animation-delay: 0.3s;
-}
-
-.result.success .result-row:nth-child(5) {
+.form-group:nth-child(2) {
     animation-delay: 0.4s;
 }
 
-.result.success .result-row:nth-child(6) {
-    animation-delay: 0.5s;
-
+.form-group:nth-child(3) {
+    animation-delay: 0.6s;
 }
 
+.form-group:nth-child(4) {
+    animation-delay: 0.8s;
+}
 
-@keyframes resultRowAppear {
-
+@keyframes fieldSlide {
     from {
-
         opacity: 0;
-
-        transform:
-            translateX(-15px);
+        transform: translateX(30px);
     }
 
     to {
-
         opacity: 1;
-
-        transform:
-            translateX(0);
+        transform: translateX(0);
     }
 }
 
 
-/* -----------------------------------------
-   SAVING HIGHLIGHT
------------------------------------------ */
+/* ---------------------------------------------------------
+   SUCCESS MESSAGE ANIMATION
+   --------------------------------------------------------- */
 
-.saving {
+#result {
+    animation: successAppear 0.7s cubic-bezier(.2,.8,.2,1);
+}
 
-    animation:
-        savingPulse 1.5s ease-in-out infinite;
+@keyframes successAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.85) translateY(20px);
+    }
+
+    70% {
+        transform: scale(1.03);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 
-@keyframes savingPulse {
+/* ---------------------------------------------------------
+   SAVINGS HIGHLIGHT
+   --------------------------------------------------------- */
 
+.savings {
+    animation: savingsGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes savingsGlow {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.06);
+    }
+}
+
+
+/* ---------------------------------------------------------
+   LOGO FLOAT
+   --------------------------------------------------------- */
+
+.logo {
+    animation: logoFloat 4s ease-in-out infinite;
+    transition: transform 0.4s ease;
+}
+
+.logo:hover {
+    transform: scale(1.08) rotate(3deg);
+}
+
+@keyframes logoFloat {
     0%,
     100% {
-
-        transform:
-            scale(1);
+        transform: translateY(0);
     }
 
     50% {
-
-        transform:
-            scale(1.08);
+        transform: translateY(-8px);
     }
 }
 
 
-/* -----------------------------------------
-   RESET BUTTON
------------------------------------------ */
-
-.reset-btn {
-
-    transition:
-        all 0.3s ease;
-}
-
-
-.reset-btn:hover {
-
-    transform:
-        translateY(-2px)
-        scale(1.01);
-}
-
-
-/* -----------------------------------------
-   CONFETTI IMPROVEMENT
------------------------------------------ */
-
-.confetti {
-
-    border-radius:
-        2px;
-
-    box-shadow:
-        0 0 6px
-        rgba(114,216,60,0.4);
-
-    animation:
-        fall 3s linear forwards,
-        confettiSpin 1s linear infinite;
-}
-
-
-@keyframes confettiSpin {
-
-    0% {
-        rotate: 0deg;
-    }
-
-    50% {
-        rotate: 180deg;
-    }
-
-    100% {
-        rotate: 360deg;
-    }
-}
-
-
-/* -----------------------------------------
-   COUPON HOLES GLOW
------------------------------------------ */
-
-.left-hole,
-.right-hole {
-
-    transition:
-        box-shadow 0.4s ease;
-}
-
-
-.coupon:hover .left-hole,
-.coupon:hover .right-hole {
-
-    box-shadow:
-        0 0 15px
-        rgba(255,255,255,0.5);
-}
-
-
-/* -----------------------------------------
+/* ---------------------------------------------------------
    MOBILE OPTIMIZATION
------------------------------------------ */
+   --------------------------------------------------------- */
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
 
-    .coupon:hover {
-
-        transform:
-            translateY(-5px)
-            scale(1.01);
+    body::before {
+        width: 120px;
+        height: 120px;
     }
 
+    body::after {
+        width: 150px;
+        height: 150px;
+    }
+
+    .coupon-card:hover {
+        transform: translateY(-5px) scale(1.01);
+    }
+
+    .main-card:hover {
+        transform: translateY(-3px);
+    }
 }
 
 
-@media (max-width: 500px) {
+/* ---------------------------------------------------------
+   REDUCE MOTION FOR ACCESSIBILITY
+   --------------------------------------------------------- */
 
-    .main-card {
+@media (prefers-reduced-motion: reduce) {
 
-        animation:
-            cardEntrance 0.8s ease;
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
-
-
-    .coupon:hover {
-
-        transform:
-            translateY(-3px);
-    }
-
-
-    .coupon-title {
-
-        animation:
-            earlyBirdGlow 2.5s ease-in-out infinite;
-    }
-
 }
